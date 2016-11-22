@@ -12,11 +12,11 @@ public class ProcessedTransactionsQueryService {
     @Autowired
     ProcessedTransactionsQueryDAO processedTransactionsQueryDAO;
 
-    public List queryByCustomer(String custClstrId) {
-        return processedTransactionsQueryDAO.queryByCustomer(custClstrId);
+    public List queryByCustomer(String startDate, String endDate) {
+        return processedTransactionsQueryDAO.queryByCustomer(startDate, endDate);
     }
 
-    public List queryByCustomerTest(String custClstrId) {
-        return processedTransactionsQueryDAO.queryByCustomerTest(custClstrId);
+    public List queryByCustomerTest(String lastName) {
+        return processedTransactionsQueryDAO.queryByCustomerTest(lastName);
     }
 }

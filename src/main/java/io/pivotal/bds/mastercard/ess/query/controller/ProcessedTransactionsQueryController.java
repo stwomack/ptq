@@ -14,8 +14,9 @@ public class ProcessedTransactionsQueryController {
     @RequestMapping(value = "/processedTransactions/{custClstrId}", method = RequestMethod.GET)
     public
     @ResponseBody
-    List queryByCustomer(@PathVariable("custClstrId") String custClstrId) {
-        return processedTransactionsQueryService.queryByCustomerTest(custClstrId);
+    List queryByCustomer(@PathVariable("custClstrId") String custClstrId, @RequestParam("start_date") String startDate, @RequestParam("end_date") String endDate) {
+//        return processedTransactionsQueryService.queryByCustomer("stuff", "stuff");
+        return processedTransactionsQueryService.queryByCustomerTest("Womack");
     }
 
 }
