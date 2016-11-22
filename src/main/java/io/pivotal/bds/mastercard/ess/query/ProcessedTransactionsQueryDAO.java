@@ -91,8 +91,6 @@ public class ProcessedTransactionsQueryDAO {
     }
 
     public List queryByCustomerTest(String custClstrId) {
-        return jdbcTemplate.queryForList("select firstName, \n" +
-                "lastName \n" +
-                " from people;");
+        return jdbcTemplate.queryForList(customerQuery);
     }
 }
