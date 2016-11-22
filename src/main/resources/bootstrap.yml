@@ -1,0 +1,18 @@
+---
+security:
+  basic:
+    enabled: false
+spring:
+  application:
+    name: processed-transaction-query-service
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/mastercard
+    username: mastercard
+    password: pivotal
+    driverClassName: org.postgresql.Driver
+
+#    spring.jpa.show-sql=false

@@ -1,11 +1,17 @@
 package io.pivotal.bds.mastercard.ess.query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.Map;
 
+@Repository
 public class ProcessedTransactionsQueryDAO {
+    @Autowired
     JdbcTemplate jdbcTemplate;
+
+
     private String customerQuery =
             "   SELECT /*+ FULL(PT) */\n" +
                     " PT.PRCSS_TRAN_ID,\n" +

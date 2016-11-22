@@ -1,4 +1,4 @@
-package io.pivotal.bds.mastercard.ess;
+package io.pivotal.bds.mastercard.ess.query;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

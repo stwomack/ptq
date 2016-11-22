@@ -15,7 +15,7 @@ public class ProcessedTransactionsQueryController {
     public
     @ResponseBody
     Map queryByCustomer(@PathVariable("custClstrId") String custClstrId) {
-        return processedTransactionsQueryService.queryByCustomer(custClstrId);
+        return processedTransactionsQueryService.queryByCustomerTest(custClstrId);
     }
 
 }
