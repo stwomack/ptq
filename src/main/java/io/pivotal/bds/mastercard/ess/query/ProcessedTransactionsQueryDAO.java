@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.Map;
+import java.util.List;
 
 @Repository
 public class ProcessedTransactionsQueryDAO {
@@ -86,12 +86,12 @@ public class ProcessedTransactionsQueryDAO {
                     "   AND PT.CUST_CLSTR_ID IN (1, 2, 3)\n" +
                     "   ORDER BY PRCSS_DT_TM;";
 
-    public Map queryByCustomer(String custClstrId) {
-        return jdbcTemplate.queryForMap("select firstName, lastName from people");
+    public List queryByCustomer(String custClstrId) {
+        return jdbcTemplate.queryForList("select firstName, lastName from people");
     }
 
-    public Map queryByCustomerTest(String custClstrId) {
-        return jdbcTemplate.queryForMap("select firstName, \n" +
+    public List queryByCustomerTest(String custClstrId) {
+        return jdbcTemplate.queryForList("select firstName, \n" +
                 "lastName \n" +
                 " from people;");
     }

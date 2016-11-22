@@ -4,7 +4,7 @@ import io.pivotal.bds.mastercard.ess.query.service.ProcessedTransactionsQuerySer
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.util.List;
 
 @RestController
 public class ProcessedTransactionsQueryController {
@@ -14,7 +14,7 @@ public class ProcessedTransactionsQueryController {
     @RequestMapping(value = "/processedTransactions/{custClstrId}", method = RequestMethod.GET)
     public
     @ResponseBody
-    Map queryByCustomer(@PathVariable("custClstrId") String custClstrId) {
+    List queryByCustomer(@PathVariable("custClstrId") String custClstrId) {
         return processedTransactionsQueryService.queryByCustomerTest(custClstrId);
     }
 
