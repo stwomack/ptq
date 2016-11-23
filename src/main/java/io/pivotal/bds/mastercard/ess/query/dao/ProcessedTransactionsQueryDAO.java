@@ -57,35 +57,35 @@ public class ProcessedTransactionsQueryDAO {
                 " DE41_CARD_ACPT_TERM_ID AS cardAcceptorTerminalId,\n" +
                 " SUBSTR ( DE61_POS_DATA_TXT, 4, 1) AS posCardholderPresence,\n" +
                 " DE6_BILL_AMT AS cardholderBillingAmount\n" +
-            "   FROM RDR_OWNER.PROCESSED_TRAN PT\n" +
-            "   WHERE PT.PRCSS_DT_TM >= TO_DATE ( :startDate, 'MM/dd/yyyy HH24:mi:ss')\n" +
-            "   AND PT.PRCSS_DT_TM <= TO_DATE ( :endDate, 'MM/dd/yyyy HH24:mi:ss')\n" +
-            "   AND PT.AUTH_ACCT_RNG_ID IN\n" +
-                " (5739,\n" +
-                " 6404,\n" +
-                " 6405,\n" +
-                " 139725,\n" +
-                " 100416,\n" +
-                " 104223,\n" +
-                " 80385,\n" +
-                " 8850,\n" +
-                " 8851,\n" +
-                " 8854,\n" +
-                " 47161,\n" +
-                " 96428,\n" +
-                " 125223,\n" +
-                " 109459,\n" +
-                " 9139,\n" +
-                " 9140,\n" +
-                " 9173,\n" +
-                " 41906,\n" +
-                " 9174,\n" +
-                " 11471,\n" +
-                " 11472,\n" +
-                " 11473,\n" +
-                " 19355,\n" +
-                " 23031)\n" +
-            "   AND PT.CUST_CLSTR_ID IN (1, 2, 3)\n" +
+            "   FROM public.PROCESSED_TRAN PT\n" +
+//            "   WHERE PT.PRCSS_DT_TM >= TO_DATE ( :startDate, 'MM/dd/yyyy HH24:mi:ss')\n" +
+//            "   AND PT.PRCSS_DT_TM <= TO_DATE ( :endDate, 'MM/dd/yyyy HH24:mi:ss')\n" +
+            "   WHERE PT.AUTH_ACCT_RNG_ID IN\n" +
+                " (9125984713904412918,\n" +
+                " 8872784616927947792,\n" +
+//                " 6405,\n" +
+//                " 139725,\n" +
+//                " 100416,\n" +
+//                " 104223,\n" +
+//                " 80385,\n" +
+//                " 8850,\n" +
+//                " 8851,\n" +
+//                " 8854,\n" +
+//                " 47161,\n" +
+//                " 96428,\n" +
+//                " 125223,\n" +
+//                " 109459,\n" +
+//                " 9139,\n" +
+//                " 9140,\n" +
+//                " 9173,\n" +
+//                " 41906,\n" +
+//                " 9174,\n" +
+//                " 11471,\n" +
+//                " 11472,\n" +
+//                " 11473,\n" +
+//                " 19355,\n" +
+                " 2321542832409172492)\n" +
+//            "   AND PT.CUST_CLSTR_ID IN (7084512951419960478, 6646937668132404117)\n" +
             "   ORDER BY PRCSS_DT_TM;";
 
     public List queryByCustomer(String startDate, String endDate) {

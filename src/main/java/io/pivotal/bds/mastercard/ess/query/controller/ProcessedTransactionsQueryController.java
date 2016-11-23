@@ -15,8 +15,8 @@ public class ProcessedTransactionsQueryController {
     public
     @ResponseBody
     List queryByCustomer(@PathVariable("custClstrId") String custClstrId, @RequestParam("start_date") String startDate, @RequestParam("end_date") String endDate) {
-//        return processedTransactionsQueryService.queryByCustomer("stuff", "stuff");
-        return processedTransactionsQueryService.queryByCustomerTest("Womack");
+        return processedTransactionsQueryService.queryByCustomer("01/01/2016 01:01:01", "12/29/2016 01:01:01");
+//        return processedTransactionsQueryService.queryByCustomerTest("Womack");
     }
 
 }
