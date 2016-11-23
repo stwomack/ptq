@@ -12,8 +12,8 @@ public class ProcessedTransactionsQueryService {
     @Autowired
     ProcessedTransactionsQueryDAO processedTransactionsQueryDAO;
 
-    public List queryByCustomer(String startDate, String endDate) {
-        return processedTransactionsQueryDAO.queryByCustomer(startDate, endDate);
+    public List queryByCustomer(String startDate, String endDate, Long limit) {
+        return processedTransactionsQueryDAO.queryByCustomer(startDate, endDate, limit);
     }
 
     public List queryByCustomerTest(String lastName) {

@@ -86,13 +86,14 @@ public class ProcessedTransactionsQueryDAO {
 //                " 19355,\n" +
 //                " 23031)\n" +
             "   AND PT.CUST_CLSTR_ID IN (1, 2, 3)\n" +
-            "   ORDER BY PRCSS_DT_TM LIMIT 900000;";
+            "   ORDER BY PRCSS_DT_TM LIMIT :limit;";
 
-    public List queryByCustomer(String startDate, String endDate) {
+    public List queryByCustomer(String startDate, String endDate, Long limit) {
         Map namedParameters = new HashMap();
         namedParameters.put("startDate", startDate);
         namedParameters.put("endDate", endDate);
-        return namedParameterJdbcTemplate.queryForList(customerQuery, namedParameters).subList(0,20);
+        namedParameters.put("limit", limit);
+        return namedParameterJdbcTemplate.queryForList(customerQuery, namedParameters).subList(0,3);
     }
 
     public List queryByCustomerTest(String lastName) {

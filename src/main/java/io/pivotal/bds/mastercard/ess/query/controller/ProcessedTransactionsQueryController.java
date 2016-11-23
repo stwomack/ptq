@@ -16,14 +16,17 @@ public class ProcessedTransactionsQueryController {
     @RequestMapping(value = "/processedTransactions/{custClstrId}", method = RequestMethod.GET)
     public
     @ResponseBody
-    List queryByCustomer(@PathVariable("custClstrId") String custClstrId, @RequestParam("start_date") String startDate, @RequestParam("end_date") String endDate) {
+    List queryByCustomer(@PathVariable("custClstrId") String custClstrId,
+                         @RequestParam("start_date") String startDate,
+                         @RequestParam("end_date") String endDate,
+                         @RequestParam("limit") Long limit) {
         Date startTime = new Date();
-        System.err.println("Start: " + startTime);
+        System.err.println("Start: " + startTime + "***");
         List results = new ArrayList();
         results.add("Start: " + startTime + "***");
-        List transactions = processedTransactionsQueryService.queryByCustomer("01/01/2016 00:00:00", "12/29/2016 01:01:01");
+        List transactions = processedTransactionsQueryService.queryByCustomer("01/01/2016 00:00:00", "12/29/2016 01:01:01", limit);
         Date endTime = new Date();
-        results.add("End: " + endTime);
+        results.add("End: " + endTime + "***");
         System.err.println("End: " + endTime + "***");
         results.add(transactions);
         return results;
