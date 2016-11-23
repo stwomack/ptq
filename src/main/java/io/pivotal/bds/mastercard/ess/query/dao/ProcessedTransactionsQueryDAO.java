@@ -92,7 +92,6 @@ public class ProcessedTransactionsQueryDAO {
         Map namedParameters = new HashMap();
         namedParameters.put("startDate", startDate);
         namedParameters.put("endDate", endDate);
-
         return namedParameterJdbcTemplate.queryForList(customerQuery, namedParameters);
     }
 
