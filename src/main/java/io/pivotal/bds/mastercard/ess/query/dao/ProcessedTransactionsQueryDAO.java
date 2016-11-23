@@ -58,11 +58,11 @@ public class ProcessedTransactionsQueryDAO {
                 " SUBSTR ( DE61_POS_DATA_TXT, 4, 1) AS posCardholderPresence,\n" +
                 " DE6_BILL_AMT AS cardholderBillingAmount\n" +
             "   FROM public.PROCESSED_TRAN PT\n" +
-//            "   WHERE PT.PRCSS_DT_TM >= TO_DATE ( :startDate, 'MM/dd/yyyy HH24:mi:ss')\n" +
-//            "   AND PT.PRCSS_DT_TM <= TO_DATE ( :endDate, 'MM/dd/yyyy HH24:mi:ss')\n" +
-            "   WHERE PT.AUTH_ACCT_RNG_ID IN\n" +
-                " (9125984713904412918,\n" +
-                " 8872784616927947792,\n" +
+            "   WHERE PT.PRCSS_DT_TM >= TO_DATE ( :startDate, 'MM/dd/yyyy HH24:mi:ss')\n" +
+            "   AND PT.PRCSS_DT_TM <= TO_DATE ( :endDate, 'MM/dd/yyyy HH24:mi:ss')\n" +
+//            "   AND PT.AUTH_ACCT_RNG_ID IN\n" +
+//                " (5739,\n" +
+//                " 640,\n" +
 //                " 6405,\n" +
 //                " 139725,\n" +
 //                " 100416,\n" +
@@ -84,9 +84,9 @@ public class ProcessedTransactionsQueryDAO {
 //                " 11472,\n" +
 //                " 11473,\n" +
 //                " 19355,\n" +
-                " 2321542832409172492)\n" +
-//            "   AND PT.CUST_CLSTR_ID IN (7084512951419960478, 6646937668132404117)\n" +
-            "   ORDER BY PRCSS_DT_TM;";
+//                " 23031)\n" +
+            "   AND PT.CUST_CLSTR_ID IN (1, 2, 3)\n" +
+            "   ORDER BY PRCSS_DT_TM LIMIT 50000;";
 
     public List queryByCustomer(String startDate, String endDate) {
         Map namedParameters = new HashMap();
