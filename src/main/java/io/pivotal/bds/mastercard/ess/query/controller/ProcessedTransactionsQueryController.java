@@ -21,7 +21,7 @@ public class ProcessedTransactionsQueryController {
         System.err.println("Start: " + startTime);
         List results = new ArrayList();
         results.add("Start: " + startTime + "***");
-        List transactions = processedTransactionsQueryService.queryByCustomer("01/01/2016 00:00:00", "12/29/2016 01:01:01").subList(0,20);
+        List transactions = processedTransactionsQueryService.queryByCustomer("01/01/2016 00:00:00", "12/29/2016 01:01:01");
         Date endTime = new Date();
         results.add("End: " + endTime);
         System.err.println("End: " + endTime + "***");

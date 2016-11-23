@@ -1,6 +1,6 @@
 ---
 instances: 1
-memory: 1GB
+memory: 2GB
 applications:
   - name: processed-transactions-query
     host: ptq
