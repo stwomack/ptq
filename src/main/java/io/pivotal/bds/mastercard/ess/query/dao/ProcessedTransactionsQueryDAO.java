@@ -1,6 +1,7 @@
 package io.pivotal.bds.mastercard.ess.query.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +14,8 @@ public class ProcessedTransactionsQueryDAO {
     @Autowired
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+    @Value("${processesed.transaction.query}")
+    private String processedTransactionsQuery;
 
     private String customerQuery =
             "SELECT " +
@@ -86,17 +89,18 @@ public class ProcessedTransactionsQueryDAO {
 //                " 19355,\n" +
 //                " 23031)\n" +
             "   AND PT.CUST_CLSTR_ID IN (1, 2, 3)\n" +
-            "   ORDER BY PRCSS_DT_TM LIMIT 100;";
+            "   ORDER BY PRCSS_DT_TM LIMIT :limit;";
 
     public List queryByCustomer(String startDate, String endDate, Long limit) {
         Map namedParameters = new HashMap();
         namedParameters.put("startDate", startDate);
         namedParameters.put("endDate", endDate);
         namedParameters.put("limit", limit);
-        return namedParameterJdbcTemplate.queryForList(customerQuery, namedParameters).subList(0,3);
+        return namedParameterJdbcTemplate.queryForList(processedTransactionsQuery, namedParameters).subList(0,3);
     }
 
     public List queryByCustomerTest(String lastName) {
+        System.err.println(processedTransactionsQuery);
         Map namedParameters = new HashMap();
         namedParameters.put("lastName", lastName);
         return namedParameterJdbcTemplate.queryForList("select * from people where lastName = :lastName", namedParameters);

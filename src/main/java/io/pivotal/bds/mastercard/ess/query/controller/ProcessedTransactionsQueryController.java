@@ -29,6 +29,7 @@ public class ProcessedTransactionsQueryController {
         results.add("End: " + endTime + "***");
         System.err.println("End: " + endTime + "***");
         results.add(transactions);
+        System.err.println(results);
         return results;
 //        return processedTransactionsQueryService.queryByCustomerTest("Womack");
     }
