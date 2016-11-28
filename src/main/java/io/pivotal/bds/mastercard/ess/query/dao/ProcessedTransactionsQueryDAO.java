@@ -86,7 +86,7 @@ public class ProcessedTransactionsQueryDAO {
 //                " 19355,\n" +
 //                " 23031)\n" +
             "   AND PT.CUST_CLSTR_ID IN (1, 2, 3)\n" +
-            "   ORDER BY PRCSS_DT_TM LIMIT :limit;";
+            "   ORDER BY PRCSS_DT_TM LIMIT 100;";
 
     public List queryByCustomer(String startDate, String endDate, Long limit) {
         Map namedParameters = new HashMap();
