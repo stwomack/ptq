@@ -5,7 +5,7 @@ security:
 spring:
   application:
     name: processed-transaction-query-service
-  datasource:
-    url: jdbc:postgresql://localhost:5432/mastercard
-    username: mastercard
-    password: pivotal
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/mastercard
+#    username: mastercard
+#    password: pivotal
