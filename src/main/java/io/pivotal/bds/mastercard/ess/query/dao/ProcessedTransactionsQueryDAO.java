@@ -18,6 +18,7 @@ public class ProcessedTransactionsQueryDAO {
     private String processedTransactionsQuery;
 
     public List queryByCustomer(String custClstrId, String startDate, String endDate, Long limit) {
+        System.err.println(processedTransactionsQuery);
         Map namedParameters = new HashMap();
         namedParameters.put("custClstrId", custClstrId);
         namedParameters.put("startDate", startDate);
