@@ -1,3 +1,6 @@
+spring.cloud.stream.bindings.output.binder: kafka
+spring.cloud.stream.bindings.output.destination: processedTransactionQueryResult
+#spring.cloud.stream.bindings.output.group: sendToGemfire
 processesed.transaction.query: |
   SELECT
     PT.PRCSS_TRAN_ID,

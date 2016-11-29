@@ -2,8 +2,6 @@ package io.pivotal.bds.mastercard.ess.query.service;
 
 import io.pivotal.bds.mastercard.ess.query.dao.ProcessedTransactionsQueryDAO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.stream.messaging.Source;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,4 +21,5 @@ public class ProcessedTransactionsQueryService {
     public List queryByCustomerTest(String lastName) {
         return processedTransactionsQueryDAO.queryByCustomerTest(lastName);
     }
+
 }
