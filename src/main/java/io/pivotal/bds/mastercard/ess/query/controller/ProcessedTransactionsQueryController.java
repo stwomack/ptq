@@ -20,18 +20,18 @@ public class ProcessedTransactionsQueryController {
                          @RequestParam("start_date") String startDate,
                          @RequestParam("end_date") String endDate,
                          @RequestParam("limit") Long limit) {
-//        Date startTime = new Date();
-//        System.err.println("Start: " + startTime + "***");
-//        List results = new ArrayList();
-//        results.add("Start: " + startTime + "***");
-//        List transactions = processedTransactionsQueryService.queryByCustomer(custClstrId, "01/01/2016 00:00:00", "12/29/2016 01:01:01", limit);
-//        Date endTime = new Date();
-//        results.add("End: " + endTime + "***");
-//        System.err.println("End: " + endTime + "***");
-//        results.add(transactions);
-//        System.err.println(results);
-//        return results;
-        return processedTransactionsQueryService.queryByCustomerTest("Womack");
+        Date startTime = new Date();
+        System.err.println("Start: " + startTime + "***");
+        List results = new ArrayList();
+        results.add("Start: " + startTime + "***");
+        List transactions = processedTransactionsQueryService.queryByCustomer(custClstrId, "01/01/2016 00:00:00", "12/29/2016 01:01:01", limit);
+        Date endTime = new Date();
+        results.add("End: " + endTime + "***");
+        System.err.println("End: " + endTime + "***");
+        results.add(transactions);
+        System.err.println(results);
+        return results;
+//        return processedTransactionsQueryService.queryByCustomerTest("Womack");
     }
 
 }
