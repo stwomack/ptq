@@ -29,15 +29,14 @@ public class ProcessedTransactionsQueryController {
         Date endTime = new Date();
         System.err.println("End: " + endTime + "***");
         results.add("End: " + endTime + "***");
-        long timeDiff = getDateDiff(startTime,endTime,TimeUnit.MINUTES);
+        long timeDiff = getDateDiff(startTime,endTime);
         results.add("Total Query Time (in Seconds): " + timeDiff + "***");
         results.add(transactions);
         System.err.println(results);
         return results;
     }
 
-    public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
-        long diffInMillies = date2.getTime() - date1.getTime();
-        return timeUnit.convert(diffInMillies,TimeUnit.SECONDS);
+    public static long getDateDiff(Date date1, Date date2) {
+        return (date2.getTime()-date1.getTime())/1000;
     }
 }
