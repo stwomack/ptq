@@ -25,7 +25,7 @@ public class ProcessedTransactionsQueryController {
         System.err.println("Start: " + startTime + "***");
         List results = new ArrayList();
 //        results.add("Start: " + startTime + "***");
-        List transactions = processedTransactionsQueryService.queryByCustomer(custClstrId, "01/01/2016 00:00:00", "12/29/2016 01:01:01", limit);
+        List transactions = processedTransactionsQueryService.queryByCustomer(custClstrId, "11/01/2016 00:00:00", "12/29/2016 01:01:01", limit);
         Date endTime = new Date();
         System.err.println("End: " + endTime + "***");
 //        results.add("End: " + endTime + "***");
