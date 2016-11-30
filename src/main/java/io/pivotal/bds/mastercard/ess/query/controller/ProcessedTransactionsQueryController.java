@@ -30,7 +30,7 @@ public class ProcessedTransactionsQueryController {
         long timeDiff = getDateDiff(endTime,startTime,TimeUnit.MINUTES);
         results.add("End: " + endTime + "***");
         System.err.println("End: " + endTime + "***");
-        results.add("Total Query Time (in Seconds): " + timeDiff + "***");
+//        results.add("Total Query Time (in Seconds): " + timeDiff + "***");
         results.add(transactions);
         System.err.println(results);
         return results;
