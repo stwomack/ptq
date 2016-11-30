@@ -24,7 +24,7 @@ public class ProcessedTransactionsQueryDAO {
         namedParameters.put("startDate", startDate);
         namedParameters.put("endDate", endDate);
         namedParameters.put("limit", limit);
-        return namedParameterJdbcTemplate.queryForList(processedTransactionsQuery, namedParameters).subList(0,3);
+        return namedParameterJdbcTemplate.queryForList(processedTransactionsQuery, namedParameters).subList(0,1);
     }
 
     public List queryByCustomerTest(String lastName) {
