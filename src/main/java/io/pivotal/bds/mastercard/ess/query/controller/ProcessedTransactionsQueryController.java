@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 public class ProcessedTransactionsQueryController {
@@ -26,12 +27,17 @@ public class ProcessedTransactionsQueryController {
         results.add("Start: " + startTime + "***");
         List transactions = processedTransactionsQueryService.queryByCustomer(custClstrId, "01/01/2016 00:00:00", "12/29/2016 01:01:01", limit);
         Date endTime = new Date();
+        long timeDiff = getDateDiff(endTime,startTime,TimeUnit.MINUTES);
         results.add("End: " + endTime + "***");
         System.err.println("End: " + endTime + "***");
+        results.add("Total Query Time (in Seconds): " + timeDiff + "***");
         results.add(transactions);
         System.err.println(results);
         return results;
-//        return processedTransactionsQueryService.queryByCustomerTest("Womack");
     }
 
+    public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+        long diffInMillies = date2.getTime() - date1.getTime();
+        return timeUnit.convert(diffInMillies,TimeUnit.SECONDS);
+    }
 }
