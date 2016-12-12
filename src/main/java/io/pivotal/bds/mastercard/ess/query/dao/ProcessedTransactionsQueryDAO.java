@@ -24,7 +24,14 @@ public class ProcessedTransactionsQueryDAO {
         namedParameters.put("startDate", startDate);
         namedParameters.put("endDate", endDate);
         namedParameters.put("limit", limit);
-        return namedParameterJdbcTemplate.queryForList(processedTransactionsQuery, namedParameters).subList(0,1);
+        List results = namedParameterJdbcTemplate.queryForList(processedTransactionsQuery, namedParameters);
+        Map<String, String> count = new HashMap<>();
+        count.put("Count", new Integer(results.size()).toString());
+        if (results.size() > 2) {
+            return results.subList(0,1);
+        } else {
+            return results;
+        }
     }
 
     public List queryByCustomerTest(String lastName) {
