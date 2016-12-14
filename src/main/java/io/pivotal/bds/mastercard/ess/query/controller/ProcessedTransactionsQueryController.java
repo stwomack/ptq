@@ -25,7 +25,7 @@ public class ProcessedTransactionsQueryController {
         System.err.println("Start: " + startTime + "***");
         List results = new ArrayList();
         results.add("Start: " + startTime + "***");
-        List transactions = processedTransactionsQueryService.queryByCustomer(custClstrId, "11/01/2016 00:00:00", "12/29/2016 01:01:01", limit);
+        List transactions = processedTransactionsQueryService.queryByCustomer(custClstrId, "01/01/2016 00:00:00", "12/29/2016 23:01:01", limit);
         Date endTime = new Date();
         System.err.println("End: " + endTime + "***");
         results.add("End: " + endTime + "***");
@@ -36,7 +36,16 @@ public class ProcessedTransactionsQueryController {
         return results;
     }
 
-    public static long getDateDiff(Date date1, Date date2) {
+    @RequestMapping(value = "/sleep/{seconds}", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String sleep(@PathVariable("seconds") String seconds) throws InterruptedException {
+        int timeInMilis = Integer.parseInt(seconds) * 1000;
+        Thread.sleep(timeInMilis);
+        return "Slept for: " + seconds + " seconds";
+    }
+
+    private static long getDateDiff(Date date1, Date date2) {
         return (date2.getTime()-date1.getTime())/1000;
     }
 }

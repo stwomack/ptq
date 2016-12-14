@@ -26,9 +26,11 @@ public class ProcessedTransactionsQueryDAO {
         namedParameters.put("limit", limit);
         List results = namedParameterJdbcTemplate.queryForList(processedTransactionsQuery, namedParameters);
         Map<String, String> count = new HashMap<>();
-        count.put("Count", new Integer(results.size()).toString());
+        count.put("Count: ", new Integer(results.size()).toString());
+        results.add(0, count);
+        System.err.println(results);
         if (results.size() > 2) {
-            return results.subList(0,1);
+            return results.subList(0,2);
         } else {
             return results;
         }

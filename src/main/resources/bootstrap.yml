@@ -4,7 +4,7 @@ security:
     enabled: false
 spring:
   application:
-    name: processed-transaction-query-service
+    name: processed-transaction-query
 #  datasource:
 #    url: jdbc:postgresql://localhost:5432/mastercard
 #    username: mastercard
