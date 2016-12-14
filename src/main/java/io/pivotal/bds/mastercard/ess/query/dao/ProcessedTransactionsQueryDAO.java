@@ -18,7 +18,6 @@ public class ProcessedTransactionsQueryDAO {
     private String processedTransactionsQuery;
 
     public List queryByCustomer(String custClstrId, String startDate, String endDate, Long limit) {
-        System.out.println(processedTransactionsQuery);
         Map namedParameters = new HashMap();
         namedParameters.put("custClstrId", custClstrId);
         namedParameters.put("startDate", startDate);
@@ -28,7 +27,6 @@ public class ProcessedTransactionsQueryDAO {
         Map<String, String> count = new HashMap<>();
         count.put("Count: ", new Integer(results.size()).toString());
         results.add(0, count);
-        System.err.println(results);
         if (results.size() > 2) {
             return results.subList(0,2);
         } else {
