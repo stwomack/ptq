@@ -22,17 +22,15 @@ public class ProcessedTransactionsQueryController {
                          @RequestParam("end_date") String endDate,
                          @RequestParam("limit") Long limit) {
         Date startTime = new Date();
-        System.err.println("Start: " + startTime + "***");
         List results = new ArrayList();
         results.add("Start: " + startTime + "***");
-        List transactions = processedTransactionsQueryService.queryByCustomer(custClstrId, "01/01/2016 00:00:00", "12/29/2016 23:01:01", limit);
+        List transactions = processedTransactionsQueryService.queryByCustomer(custClstrId, "01/01/2014 00:00:00", "12/29/2016 23:01:01", limit);
         Date endTime = new Date();
-        System.err.println("End: " + endTime + "***");
         results.add("End: " + endTime + "***");
         long timeDiff = getDateDiff(startTime,endTime);
-        results.add("Total Query Time (in Seconds): " + timeDiff + "***");
+        results.add("Total Time (in Seconds): " + timeDiff + "***");
         results.add(transactions);
-        System.err.println(results);
+        System.out.println(results);
         return results;
     }
 

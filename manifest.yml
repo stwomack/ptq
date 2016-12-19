@@ -1,8 +1,8 @@
 ---
 instances: 1
-memory: 8192MB
+memory: 16384MB
 applications:
-  - name: processed-transactions-query
+  - name: mastercard-ess-query
     host: ptq
     buildpack: java_buildpack_offline
     path: target/processed-transactions-query-0.0.1-SNAPSHOT.jar
