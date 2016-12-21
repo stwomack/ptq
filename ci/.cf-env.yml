@@ -1,0 +1,5 @@
+---
+cf-user: swomack@pivotal.io
+cf-password: pivotal123!
+cf-org: it-org
+cf-space: dev

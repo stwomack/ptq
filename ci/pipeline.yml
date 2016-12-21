@@ -1,0 +1,32 @@
+---
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: https://github.com/stwomack/account-service.git
+    branch: master
+
+- name: cf
+  type: cf
+  source:
+    api: https://api.system.52.176.40.186.cf.pcfazure.com
+    username: {{cf-user}}
+    password: {{cf-password}}
+    organization: {{cf-org}}
+    space: {{cf-space}}
+    skip_cert_check: true
+
+jobs:
+- name: test-build-deploy
+  public: true
+  serial: true
+  plan:
+  - get: source-code
+    trigger: true
+  - task: build
+    file: source-code/ci/tasks/build.yml
+  - put: cf
+    params:
+      current_app_name: mastercard-ess-query
+      manifest: source-code/manifest.yml
+      path: build-output/processed-transactions-query-0.0.1-SNAPSHOT.jar
