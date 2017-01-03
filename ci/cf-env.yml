@@ -1,5 +1,12 @@
 ---
-cf-user: user
-cf-password: pass
-cf-org: org
-cf-space: space
+cf-dev-url: http://api.system.pcf-apps.net
+cf-dev-user: user
+cf-dev-password: pass
+cf-dev-org: it-org
+cf-dev-space: dev
+
+cf-prod-url: http://api.system.pcf-apps.net
+cf-prod-user: user
+cf-prod-password: pass
+cf-prod-org: it-org
+cf-prod-space: prod

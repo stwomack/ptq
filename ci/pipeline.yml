@@ -6,18 +6,28 @@ resources:
     uri: https://github.com/stwomack/ptq.git
     branch: master
 
-- name: cf
+- name: cf-dev
   type: cf
   source:
-    api: https://api.system.52.176.40.186.cf.pcfazure.com
-    username: {{cf-user}}
-    password: {{cf-password}}
-    organization: {{cf-org}}
-    space: {{cf-space}}
+    api: {{cf-dev-url}}
+    username: {{cf-dev-user}}
+    password: {{cf-dev-password}}
+    organization: {{cf-dev-org}}
+    space: {{cf-dev-space}}
+    skip_cert_check: true
+
+- name: cf-prod
+  type: cf
+  source:
+    api: {{cf-prod-url}}
+    username: {{cf-prod-user}}
+    password: {{cf-prod-password}}
+    organization: {{cf-prod-org}}
+    space: {{cf-prod-space}}
     skip_cert_check: true
 
 jobs:
-- name: test-build-deploy
+- name: ptq-pipeline
   public: true
   serial: true
   plan:
@@ -25,7 +35,14 @@ jobs:
     trigger: true
   - task: build
     file: source-code/ci/tasks/build.yml
-  - put: cf
+  - put: cf-dev
+    params:
+      current_app_name: mastercard-ess-query
+      manifest: source-code/manifest.yml
+      path: build-output/processed-transactions-query-0.0.1-SNAPSHOT.jar
+  - task: uat
+    file: source-code/ci/tasks/uat.yml
+  - put: cf-prod
     params:
       current_app_name: mastercard-ess-query
       manifest: source-code/manifest.yml
