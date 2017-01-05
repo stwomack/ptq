@@ -14,4 +14,4 @@ outputs:
   - name: uat-output
 
 run:
-  path: source-code/ci/tasks/uat.sh
+  path: build-output/ci/tasks/uat.sh

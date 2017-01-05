@@ -6,4 +6,4 @@ cd source-code
   ./mvnw clean package
 cd ..
 
-cp source-code/ build-output/.
+cp -fr source-code/ build-output
