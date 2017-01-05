@@ -39,11 +39,11 @@ jobs:
     params:
       current_app_name: mastercard-ess-query
       manifest: source-code/manifest.yml
-      path: build-output/processed-transactions-query-0.0.1-SNAPSHOT.jar
+      path: build-output/target/processed-transactions-query-0.0.1-SNAPSHOT.jar
   - task: uat
     file: source-code/ci/tasks/uat.yml
   - put: cf-prod
     params:
       current_app_name: mastercard-ess-query
       manifest: source-code/manifest.yml
-      path: build-output/processed-transactions-query-0.0.1-SNAPSHOT.jar
+      path: uat-output/target/processed-transactions-query-0.0.1-SNAPSHOT.jar

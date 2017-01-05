@@ -7,5 +7,11 @@ image_resource:
     repository: openjdk
     tag: '8-jdk-alpine'
 
+inputs:
+  - name: build-output
+
+outputs:
+  - name: uat-output
+
 run:
   path: source-code/ci/tasks/uat.sh
