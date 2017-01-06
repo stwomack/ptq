@@ -1,3 +1,4 @@
+.cf-env.yml
 target/
 !.mvn/wrapper/maven-wrapper.jar
 
