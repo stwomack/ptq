@@ -5,8 +5,8 @@ cf-dev-password: pivotal123!
 cf-dev-org: it-org
 cf-dev-space: dev
 
-cf-prod-url: http://api.system.pcf-apps.net
-cf-prod-user: swomack@pivotal.io
-cf-prod-password: pivotal1
+cf-prod-url: https://api.system.13.90.33.125.cf.pcfazure.com
+cf-prod-user: admin
+cf-prod-password: zvfrgxn-l4xtWYrDfYxTgSegTfdsdGYX
 cf-prod-org: it-org
 cf-prod-space: prod
