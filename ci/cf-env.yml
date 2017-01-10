@@ -17,6 +17,6 @@ cf-stage-domain: app.52.176.40.186.cf.pcfazure.com
 
 s3-access-key-id: sdfsd  # AWS or S3 compatible access key id
 s3-secret-access-key: asdlksadfasd # AWS or S3 compatible secret access key
-s3-endpoint: apigateway.us-west-2.amazonaws.com
+s3-endpoint: s3.amazonaws.com
 s3-bucket: ess-releases
 s3-bucket-version: ess-versions # Create and change this to your own S3 bucket
