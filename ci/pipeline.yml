@@ -54,7 +54,7 @@ jobs:
       - task: build
         file: ptq-repo/ci/tasks/build.yml
       - put: app-release
-        params: { file: build-output/target/processed-transactions-query-*.jar}
+        params: { file: build-output/target/ptq-*.jar}
       - put: version
         params: { file: version/number }
 
