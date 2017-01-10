@@ -27,7 +27,7 @@ resources:
     skip_cert_check: true
 
 jobs:
-- name: ptq-pipeline
+- name: ptq-dev
   public: true
   serial: true
   plan:
@@ -40,10 +40,12 @@ jobs:
       current_app_name: mastercard-ess-query
       manifest: source-code/manifest.yml
       path: build-output/target/processed-transactions-query-0.0.1-SNAPSHOT.jar
-  - task: uat
-    file: source-code/ci/tasks/uat.yml
-  - put: cf-prod
-    params:
-      current_app_name: mastercard-ess-query
-      manifest: source-code/manifest.yml
-      path: uat-output/target/processed-transactions-query-0.0.1-SNAPSHOT.jar
+- name: ptq-qa
+  plan:
+    - task: uat
+      file: source-code/ci/tasks/uat.yml
+    - put: cf-prod
+      params:
+        current_app_name: mastercard-ess-query
+        manifest: source-code/manifest.yml
+        path: uat-output/target/processed-transactions-query-0.0.1-SNAPSHOT.jar

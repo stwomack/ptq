@@ -1,12 +1,12 @@
 ---
-cf-dev-url: http://api.system.pcf-apps.net
-cf-dev-user: user
-cf-dev-password: pass
+cf-dev-url: http://api.pcf-apps.net/
+cf-dev-user: swomack@pivotal.io
+cf-dev-password:
 cf-dev-org: it-org
 cf-dev-space: dev
 
-cf-prod-url: http://api.system.pcf-apps.net
-cf-prod-user: user
-cf-prod-password: pass
+cf-prod-url: https://api.system.52.176.40.186.cf.pcfazure.com
+cf-prod-user: swomack
+cf-prod-password: !
 cf-prod-org: it-org
 cf-prod-space: prod

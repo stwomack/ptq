@@ -1,6 +1,6 @@
 ---
 instances: 1
-memory: 16384MB
+memory: 4GB
 applications:
   - name: mastercard-ess-query
     host: ptq
