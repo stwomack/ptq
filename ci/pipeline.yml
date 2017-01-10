@@ -4,7 +4,7 @@ resources:
   type: git
   source:
     uri: https://github.com/stwomack/ptq
-    branch: master
+    branch: s3-update
 
 - name: app-release
   type: s3
