@@ -2,8 +2,8 @@ resources:
   - name: ptq-repo
     type: git
     source:
-      uri: {{github-ptq-uri}}
-      branch: {{github-ptq-branch}}
+      uri: {{github-uri}}
+      branch: {{github-branch}}
 
   - name: version
     type: semver
@@ -18,8 +18,8 @@ resources:
   - name: app-release
     type: s3
     source:
-      bucket: {{s3-bucket-releases}}
-      regexp: attendees-(.*).jar
+      bucket: {{s3-bucket}}
+      regexp: ptq-(.*).jar
       access_key_id: {{s3-access-key-id}}
       secret_access_key: {{s3-secret-access-key}}
       endpoint: {{s3-endpoint}}
@@ -66,23 +66,22 @@ jobs:
           trigger: true
         - get: ptq-repo
         - get: version
-      - task: prepare-manifest
-        file: ptq-repo/ci/tasks/prepare-manifest.yml
       - put: cf-dev
+        current_app_name: ptq
         params:
-          manifest: prepare-manifest/manifest.yml
+          manifest: ptq/manifest.yml
 
   - name: test-app
     plan:
       - aggregate:
         - get: app-release
-          passed: [deploy-test]
+          passed: [deploy-dev]
           trigger: true
         - get: ptq-repo
       - task: test
         file: ptq-repo/ci/tasks/test.yml
 
-  - name: blue-deploy-stage
+  - name: deploy-stage
     plan:
       - aggregate:
         - get: ptq-repo
@@ -93,23 +92,6 @@ jobs:
       - task: stage-manifest
         file: ptq-repo/ci/tasks/stage-manifest.yml
       - put: cf-stage
+        current_app_name: ptq
         params:
-          manifest: stage-manifest/manifest.yml
-
-  - name: finalize-blue-green
-    serial: true
-    plan:
-      - aggregate:
-        - get: ptq-repo
-          passed: [blue-deploy-stage]
-          trigger: true
-        - get: version
-      - task: finalize-deploy
-        file: ptq-repo/ci/tasks/finalize-deploy.yml
-        params:
-          CF_API_ENDPOINT: {{cf-stage-api}}
-          CF_DOMAIN: {{cf-stage-domain}}
-          CF_USER: {{cf-stage-username}}
-          CF_PWD: {{cf-stage-password}}
-          CF_ORG: {{cf-stage-org}}
-          CF_SPACE: {{cf-stage-space}}
+          manifest: ptq-repo/manifest.yml
