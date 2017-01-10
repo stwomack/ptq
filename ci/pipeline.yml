@@ -3,8 +3,17 @@ resources:
 - name: source-code
   type: git
   source:
-    uri: https://github.com/stwomack/ptq.git
+    uri: https://github.com/stwomack/ptq
     branch: master
+
+- name: app-release
+  type: s3
+  source:
+    bucket: {{s3-bucket}}
+    regexp: processed-transactions-query-(.*).jar
+    access_key_id: {{s3-access-key-id}}
+    secret_access_key: {{s3-secret-access-key}}
+    endpoint: {{s3-endpoint}}
 
 - name: cf-dev
   type: cf
@@ -35,17 +44,23 @@ jobs:
     trigger: true
   - task: build
     file: source-code/ci/tasks/build.yml
+  - put: app-release
+    params: { file: build-output/target/processed-transactions-query-*.jar }
   - put: cf-dev
     params:
       current_app_name: mastercard-ess-query
       manifest: source-code/manifest.yml
       path: build-output/target/processed-transactions-query-0.0.1-SNAPSHOT.jar
+
 - name: ptq-qa
   plan:
+    - get: app-release
+      passed: [ ptq-dev ]
+      trigger: true
     - task: uat
-      file: source-code/ci/tasks/uat.yml
+      file: build-output/ci/tasks/uat.yml
     - put: cf-prod
       params:
         current_app_name: mastercard-ess-query
-        manifest: source-code/manifest.yml
+        manifest: uat-output/manifest.yml
         path: uat-output/target/processed-transactions-query-0.0.1-SNAPSHOT.jar
