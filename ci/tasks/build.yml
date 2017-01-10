@@ -8,10 +8,18 @@ image_resource:
     tag: '8-jdk-alpine'
 
 inputs:
-  - name: source-code
+  - name: ptq-repo
+  - name: version
 
 outputs:
   - name: build-output
 
 run:
-  path: source-code/ci/tasks/build.sh
+  path: ptq-repo/ci/tasks/build.sh
+  args: [
+    --input-dir, ptq-repo,
+    --output-dir, build-output,
+    --version-file, version/number,
+    --artifactId, ptq,
+    --packaging, jar
+  ]

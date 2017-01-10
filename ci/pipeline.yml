@@ -1,5 +1,5 @@
----
 resources:
+<<<<<<< HEAD
 - name: source-code
   type: git
   source:
@@ -64,3 +64,101 @@ jobs:
         current_app_name: mastercard-ess-query
         manifest: uat-output/manifest.yml
         path: uat-output/target/processed-transactions-query-0.0.1-SNAPSHOT.jar
+=======
+  - name: ptq-repo
+    type: git
+    source:
+      uri: {{github-uri}}
+      branch: {{github-branch}}
+
+  - name: version
+    type: semver
+    source:
+      bucket: {{s3-bucket-version}}
+      key: current-version
+      access_key_id: {{s3-access-key-id}}
+      secret_access_key: {{s3-secret-access-key}}
+      initial_version: 0.0.1
+      endpoint: {{s3-endpoint}}
+
+  - name: app-release
+    type: s3
+    source:
+      bucket: {{s3-bucket}}
+      regexp: ptq-(.*).jar
+      access_key_id: {{s3-access-key-id}}
+      secret_access_key: {{s3-secret-access-key}}
+      endpoint: {{s3-endpoint}}
+
+  - name: cf-stage
+    type: cf
+    source:
+      api: {{cf-stage-api}}
+      username: {{cf-stage-username}}
+      password: {{cf-stage-password}}
+      organization: {{cf-stage-org}}
+      space: {{cf-stage-space}}
+      skip_cert_check: true
+
+  - name: cf-dev
+    type: cf
+    source:
+      api: {{cf-dev-api}}
+      username: {{cf-dev-username}}
+      password: {{cf-dev-password}}
+      organization: {{cf-dev-org}}
+      space: {{cf-dev-space}}
+      skip_cert_check: true
+
+jobs:
+  - name: build-app
+    plan:
+      - get: ptq-repo
+        trigger: true
+      - get: version
+        params: {bump: patch}
+      - task: build
+        file: ptq-repo/ci/tasks/build.yml
+      - put: app-release
+        params: { file: build-output/target/processed-transactions-query-*.jar}
+      - put: version
+        params: { file: version/number }
+
+  - name: deploy-dev
+    plan:
+      - aggregate:
+        - get: app-release
+          passed: [build-app]
+          trigger: true
+        - get: ptq-repo
+        - get: version
+      - put: cf-dev
+        current_app_name: ptq
+        params:
+          manifest: ptq/manifest.yml
+
+  - name: test-app
+    plan:
+      - aggregate:
+        - get: app-release
+          passed: [deploy-dev]
+          trigger: true
+        - get: ptq-repo
+      - task: test
+        file: ptq-repo/ci/tasks/test.yml
+
+  - name: deploy-stage
+    plan:
+      - aggregate:
+        - get: ptq-repo
+        - get: version
+        - get: app-release
+          passed: [test-app]
+          trigger: true
+      - task: stage-manifest
+        file: ptq-repo/ci/tasks/stage-manifest.yml
+      - put: cf-stage
+        current_app_name: ptq
+        params:
+          manifest: ptq-repo/manifest.yml
+>>>>>>> s3-update

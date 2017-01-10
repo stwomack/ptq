@@ -7,6 +7,11 @@ cf-dev-space: dev
 
 cf-prod-url: https://api.system.52.176.40.186.cf.pcfazure.com
 cf-prod-user: swomack
-cf-prod-password: !
+cf-prod-password:
 cf-prod-org: it-org
 cf-prod-space: prod
+
+s3-access-key-id: ABC123  # AWS or S3 compatible access key id
+s3-secret-access-key: zomgsh # AWS or S3 compatible secret access key
+s3-endpoint: s3.amazonaws.com
+s3-bucket: ess-releases  # Create and change this to your own S3 bucket
