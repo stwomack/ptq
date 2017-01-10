@@ -1,17 +1,22 @@
 ---
-cf-dev-url: http://api.pcf-apps.net/
-cf-dev-user: swomack@pivotal.io
-cf-dev-password:
+github-uri: https://github.com/stwomack/ptq.git
+github-branch: master
+
+cf-dev-api: https://api.system.52.176.40.186.cf.pcfazure.com
+cf-dev-username: swomack@pivotal.io
+cf-dev-password: pivotal123!
 cf-dev-org: it-org
 cf-dev-space: dev
 
-cf-prod-url: https://api.system.52.176.40.186.cf.pcfazure.com
-cf-prod-user: swomack
-cf-prod-password:
-cf-prod-org: it-org
-cf-prod-space: prod
+cf-stage-api: https://api.system.52.176.40.186.cf.pcfazure.com
+cf-stage-username: swomack@pivotal.io
+cf-stage-password: pivotal123!
+cf-stage-org: it-org
+cf-stage-space: stage
+cf-stage-domain: app.52.176.40.186.cf.pcfazure.com
 
-s3-access-key-id: ABC123  # AWS or S3 compatible access key id
-s3-secret-access-key: zomgsh # AWS or S3 compatible secret access key
-s3-endpoint: s3.amazonaws.com
-s3-bucket: ess-releases  # Create and change this to your own S3 bucket
+s3-access-key-id: AKIAJ65ELVIUH7QE2L5Q  # AWS or S3 compatible access key id
+s3-secret-access-key: p6X1/006/pcIDLV/pv5HnJOmgyKZ2ucbz1L7DDZm  # AWS or S3 compatible secret access key
+s3-endpoint: apigateway.us-west-2.amazonaws.com
+s3-bucket: ess-releases
+s3-bucket-version: ess-versions # Create and change this to your own S3 bucket
