@@ -3,8 +3,8 @@ resources:
 - name: source-code
   type: git
   source:
-    uri: https://github.com/stwomack/ptq
-    branch: s3-update
+    uri: {{git-uri}}
+    branch: {{git-branch}}
 
 - name: app-release
   type: s3
