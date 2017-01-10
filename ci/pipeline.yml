@@ -3,8 +3,8 @@ resources:
 - name: source-code
   type: git
   source:
-    uri: https://github.com/stwomack/ptq.git
-    branch: master
+    uri: {{git-uri}}
+    branch: {{git-branch}}
 
 - name: cf-dev
   type: cf
