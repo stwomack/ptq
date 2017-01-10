@@ -1,66 +1,115 @@
----
 resources:
-- name: source-code
-  type: git
-  source:
-    uri: {{git-uri}}
-    branch: {{git-branch}}
+  - name: ptq-repo
+    type: git
+    source:
+      uri: {{github-ptq-uri}}
+      branch: {{github-ptq-branch}}
 
-- name: app-release
-  type: s3
-  source:
-    bucket: {{s3-bucket}}
-    regexp: processed-transactions-query-(.*).jar
-    access_key_id: {{s3-access-key-id}}
-    secret_access_key: {{s3-secret-access-key}}
-    endpoint: {{s3-endpoint}}
+  - name: version
+    type: semver
+    source:
+      bucket: {{s3-bucket-version}}
+      key: current-version
+      access_key_id: {{s3-access-key-id}}
+      secret_access_key: {{s3-secret-access-key}}
+      initial_version: 0.0.1
+      endpoint: {{s3-endpoint}}
 
-- name: cf-dev
-  type: cf
-  source:
-    api: {{cf-dev-url}}
-    username: {{cf-dev-user}}
-    password: {{cf-dev-password}}
-    organization: {{cf-dev-org}}
-    space: {{cf-dev-space}}
-    skip_cert_check: true
+  - name: app-release
+    type: s3
+    source:
+      bucket: {{s3-bucket-releases}}
+      regexp: attendees-(.*).jar
+      access_key_id: {{s3-access-key-id}}
+      secret_access_key: {{s3-secret-access-key}}
+      endpoint: {{s3-endpoint}}
 
-- name: cf-prod
-  type: cf
-  source:
-    api: {{cf-prod-url}}
-    username: {{cf-prod-user}}
-    password: {{cf-prod-password}}
-    organization: {{cf-prod-org}}
-    space: {{cf-prod-space}}
-    skip_cert_check: true
+  - name: cf-stage
+    type: cf
+    source:
+      api: {{cf-stage-api}}
+      username: {{cf-stage-username}}
+      password: {{cf-stage-password}}
+      organization: {{cf-stage-org}}
+      space: {{cf-stage-space}}
+      skip_cert_check: true
+
+  - name: cf-dev
+    type: cf
+    source:
+      api: {{cf-dev-api}}
+      username: {{cf-dev-username}}
+      password: {{cf-dev-password}}
+      organization: {{cf-dev-org}}
+      space: {{cf-dev-space}}
+      skip_cert_check: true
 
 jobs:
-- name: ptq-dev
-  public: true
-  serial: true
-  plan:
-  - get: source-code
-    trigger: true
-  - task: build
-    file: source-code/ci/tasks/build.yml
-  - put: app-release
-    params: { file: build-output/target/processed-transactions-query-*.jar }
-  - put: cf-dev
-    params:
-      current_app_name: mastercard-ess-query
-      manifest: source-code/manifest.yml
-      path: build-output/target/processed-transactions-query-0.0.1-SNAPSHOT.jar
+  - name: build-app
+    plan:
+      - get: ptq-repo
+        trigger: true
+      - get: version
+        params: {bump: patch}
+      - task: build
+        file: ptq-repo/ci/tasks/build.yml
+      - put: app-release
+        params: { file: build-output/target/processed-transactions-query-*.jar}
+      - put: version
+        params: { file: version/number }
 
-- name: ptq-qa
-  plan:
-    - get: app-release
-      passed: [ ptq-dev ]
-      trigger: true
-    - task: uat
-      file: build-output/ci/tasks/uat.yml
-    - put: cf-prod
-      params:
-        current_app_name: mastercard-ess-query
-        manifest: uat-output/manifest.yml
-        path: uat-output/target/processed-transactions-query-0.0.1-SNAPSHOT.jar
+  - name: deploy-dev
+    plan:
+      - aggregate:
+        - get: app-release
+          passed: [build-app]
+          trigger: true
+        - get: ptq-repo
+        - get: version
+      - task: prepare-manifest
+        file: ptq-repo/ci/tasks/prepare-manifest.yml
+      - put: cf-dev
+        params:
+          manifest: prepare-manifest/manifest.yml
+
+  - name: test-app
+    plan:
+      - aggregate:
+        - get: app-release
+          passed: [deploy-test]
+          trigger: true
+        - get: ptq-repo
+      - task: test
+        file: ptq-repo/ci/tasks/test.yml
+
+  - name: blue-deploy-stage
+    plan:
+      - aggregate:
+        - get: ptq-repo
+        - get: version
+        - get: app-release
+          passed: [test-app]
+          trigger: true
+      - task: stage-manifest
+        file: ptq-repo/ci/tasks/stage-manifest.yml
+      - put: cf-stage
+        params:
+          manifest: stage-manifest/manifest.yml
+
+  - name: finalize-blue-green
+    serial: true
+    plan:
+      - aggregate:
+        - get: ptq-repo
+          passed: [blue-deploy-stage]
+          trigger: true
+        - get: version
+      - task: finalize-deploy
+        file: ptq-repo/ci/tasks/finalize-deploy.yml
+        params:
+          CF_API_ENDPOINT: {{cf-stage-api}}
+          CF_DOMAIN: {{cf-stage-domain}}
+          CF_USER: {{cf-stage-username}}
+          CF_PWD: {{cf-stage-password}}
+          CF_ORG: {{cf-stage-org}}
+          CF_SPACE: {{cf-stage-space}}
