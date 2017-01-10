@@ -47,6 +47,8 @@ resources:
 jobs:
   - name: build-app
     plan:
+      - put: version
+        params: { file: version/number }
       - get: ptq-repo
         trigger: true
       - get: version
