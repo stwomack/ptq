@@ -66,10 +66,12 @@ jobs:
           trigger: true
         - get: ptq-repo
         - get: version
+      - task: update-manifest
+        file: ptq-repo/ci/tasks/update-manifest.yml
       - put: cf-dev
         current_app_name: ptq
         params:
-          manifest: ptq/manifest.yml
+          manifest: ptq-repo/manifest.yml
 
   - name: test-app
     plan:
