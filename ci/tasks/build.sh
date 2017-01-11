@@ -58,6 +58,7 @@ fi
 
 version=`cat $versionFile`
 artifactName="${artifactId}-${version}.${packaging}"
+# Removing version info in artifact name for simplicity. Discuss importance of that when deploying real apps
 
 cd $inputDir
 ./mvnw clean package -Pci -DversionNumber=$version
@@ -65,4 +66,4 @@ cd $inputDir
 # Copy jar file to concourse output folder
 cd ..
 mkdir $outputDir/target
-cp $inputDir/target/$artifactId $outputDir/target/$artifactId
+cp $inputDir/target/$artifactId.${packaging} $outputDir/target/$artifactId.${packaging}
