@@ -65,4 +65,4 @@ cd $inputDir
 # Copy jar file to concourse output folder
 cd ..
 mkdir $outputDir/target
-cp $inputDir/target/$artifactName $outputDir/target/$artifactName
+cp $inputDir/target/$artifactId $outputDir/target/$artifactId
