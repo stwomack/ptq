@@ -121,7 +121,7 @@ resources:
   type: s3
   source:
     bucket: {{s3-bucket-release-candidates}}
-    regexp: ptq-(.*).war
+    regexp: ptq-(.*).jar
     access_key_id: {{s3-access-key-id}}
     secret_access_key: {{s3-secret-access-key}}
     endpoint: {{s3-endpoint}}
@@ -130,7 +130,7 @@ resources:
   type: s3
   source:
     bucket: {{s3-bucket-releases}}
-    regexp: ptq-(.*).war
+    regexp: ptq-(.*).jar
     access_key_id: {{s3-access-key-id}}
     secret_access_key: {{s3-secret-access-key}}
     endpoint: {{s3-endpoint}}
