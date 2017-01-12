@@ -57,13 +57,13 @@ if [ -z "$packaging" ]; then
 fi
 
 version=`cat $versionFile`
-#artifactName="${artifactId}-${version}.${packaging}"
-artifactName="${artifactId}.${packaging}"
+artifactName="${artifactId}-${version}.${packaging}"
+#artifactName="${artifactId}.${packaging}"
 
 # Removing version info in artifact name for simplicity. Discuss importance of that when deploying real apps
 
 cd $inputDir
-./mvnw clean package -Pci -DversionNumber=$version
+./mvnw clean package -DversionNumber=$version
 
 # Copy jar file to concourse output folder
 cd ..

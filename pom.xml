@@ -5,7 +5,7 @@
 
 	<groupId>io.pivotal.bds.mastercard.ess</groupId>
 	<artifactId>ptq</artifactId>
-	<version>${versionNumber}</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>processed-transactions-query</name>
@@ -22,17 +22,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<versionNumber>${project.version}</versionNumber>
+		<finalName>${project.artifactId}-${versionNumber}</finalName>
 	</properties>
-
-	<profiles>
-		<profile>
-			<id>ci</id>
-			<properties>
-				<versionNumber>${project.version}</versionNumber>
-				<finalName>${project.artifactId}-${versionNumber}</finalName>
-			</properties>
-		</profile>
-	</profiles>
 
 	<dependencies>
 		<dependency>
@@ -97,12 +89,13 @@
 	</dependencyManagement>
 
 	<build>
+		<finalName>${finalName}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<finalName>ptq</finalName>
+					<finalName>${finalName}</finalName>
 				</configuration>
 			</plugin>
 		</plugins>

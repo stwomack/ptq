@@ -19,7 +19,7 @@ resources:
     type: s3
     source:
       bucket: {{s3-bucket}}
-#      regexp: ptq-1.jar
+      regexp: ptq-(.*).jar
       access_key_id: {{s3-access-key-id}}
       secret_access_key: {{s3-secret-access-key}}
       endpoint: {{s3-endpoint}}
@@ -54,7 +54,7 @@ jobs:
       - task: build
         file: ptq-repo/ci/tasks/build.yml
       - put: app-release
-        params: { file: build-output/target/ptq.jar}
+        params: { file: build-output/target/ptq-*.jar}
       - put: version
         params: { file: version/number }
 
