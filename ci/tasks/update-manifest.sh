@@ -61,5 +61,5 @@ artifactName="${artifactId}-${version}.${packaging}"
 
 # Copy jar file to concourse output folder
 cd ..
-sed -i '' 's/changeme/ptq-1.2.3/g' manifest.yml
+sed -i '' "s/changeme/ptq-${version}.jar/g" manifest.yml
 cp -fr $inputDir/. $outputDir
