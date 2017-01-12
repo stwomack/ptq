@@ -36,11 +36,11 @@ cf target -s $CF_SPACE
 #fi
 
 # copy the artifact to the task output folder
-cp candidate-release/ptq-*.war prepare-cf-output/.
+cp candidate-release/ptq-*.jar prepare-cf-output/.
 
 pushd prepare-cf-output
 
-ARTIFACT_PATH=$(ls ptq-*.war)
+ARTIFACT_PATH=$(ls ptq-*.jar)
 
 cat <<EOF >manifest.yml
 ---
