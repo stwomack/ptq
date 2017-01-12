@@ -61,5 +61,5 @@ artifactName="${artifactId}-${version}.${packaging}"
 
 # Copy jar file to concourse output folder
 echo "Hi. this is happening."
-sed -i -- "s/changeme/ptq-${version}.jar/g" "target/${inputDir}/manifest.yml"
+sed -i -- "s/changeme/ptq-${version}.jar/g" "${inputDir}/manifest.yml"
 cp -fr $inputDir/. $outputDir
