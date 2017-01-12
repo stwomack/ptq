@@ -57,7 +57,9 @@ if [ -z "$packaging" ]; then
 fi
 
 version=`cat $versionFile`
-artifactName="${artifactId}-${version}.${packaging}"
+#artifactName="${artifactId}-${version}.${packaging}"
+artifactName="${artifactId}.${packaging}"
+
 # Removing version info in artifact name for simplicity. Discuss importance of that when deploying real apps
 
 cd $inputDir
@@ -66,4 +68,4 @@ cd $inputDir
 # Copy jar file to concourse output folder
 cd ..
 mkdir $outputDir/target
-cp $inputDir/target/$artifactId.${packaging} $outputDir/target/$artifactId.${packaging}
+cp $inputDir/target/$artifactName $outputDir/target/$artifactName
