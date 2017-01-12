@@ -6,5 +6,7 @@ applications:
     host: ptq
     buildpack: java_buildpack_offline
     path: target/ptq-0.0.1.jar
+    hosts:
+      - ptq
     services:
       - ess-postgres
