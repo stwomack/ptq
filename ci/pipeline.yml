@@ -4,7 +4,7 @@ maven-params: &maven-params
   MAVEN_CONFIG: {{maven-config}}
 
 cf-params: &cf-params
-  CF_API_URL: {{cf-api-url}}
+  CF_API_URL: {{cf-api}}
   CF_SKIP_SSL: {{cf-skip-ssl}}
   CF_USERNAME: {{cf-username}}
   CF_PASSWORD: {{cf-password}}
@@ -138,7 +138,7 @@ resources:
 - name: cf
   type: cf
   source:
-    api: {{cf-api-url}}
+    api: {{cf-api}}
     username: {{cf-username}}
     password: {{cf-password}}
     organization: {{cf-org}}

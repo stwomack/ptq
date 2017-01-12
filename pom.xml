@@ -26,6 +26,16 @@
 		<finalName>${project.artifactId}</finalName>
 	</properties>
 
+	<profiles>
+		<profile>
+			<id>ci</id>
+			<properties>
+				<versionNumber>${project.version}</versionNumber>
+				<finalName>${project.artifactId}-${versionNumber}</finalName>
+			</properties>
+		</profile>
+	</profiles>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
