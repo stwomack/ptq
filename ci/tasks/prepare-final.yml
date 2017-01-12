@@ -7,16 +7,13 @@ image_resource:
     repository: java
     tag: '8'
 
-params:
-  MAVEN_OPTS:
-  MAVEN_CONFIG:
-
 inputs:
   - name: pcfdemo
+  - name: candidate-release
   - name: version
 
 outputs:
-  - name: build-output
+  - name: prepare-final-output
 
 run:
-  path: pcfdemo/ci/tasks/build.sh
+  path: pcfdemo/ci/tasks/prepare-final.sh

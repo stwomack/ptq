@@ -1,71 +1,14 @@
-#!/bin/ash
+#!/bin/bash
 
-set -e -x
+set -e
 
-# args
-inputDir=  outputDir=  versionFile=  artifactId=  packaging=
+version=$(cat version/number)
 
-while [ $# -gt 0 ]; do
-  case $1 in
-    -i | --input-dir )
-      inputDir=$2
-      shift
-      ;;
-    -o | --output-dir )
-      outputDir=$2
-      shift
-      ;;
-    -v | --version-file )
-      versionFile=$2
-      shift
-      ;;
-    -a | --artifactId )
-      artifactId=$2
-      shift
-      ;;
-    -p | --packaging )
-      packaging=$2
-      shift
-      ;;
-    * )
-      echo "Unrecognized option: $1" 1>&2
-      exit 1
-      ;;
-  esac
-  shift
-done
+pushd pcfdemo
+  ./mvnw clean package -Pci -DversionNumber=$version
+popd
 
-error_and_exit() {
-  echo $1 >&2
-  exit 1
-}
+# Copy war file to build output folder
+artifact="pcf-demo-$version.war"
 
-if [ ! -d "$inputDir" ]; then
-  error_and_exit "missing input directory: $inputDir"
-fi
-if [ ! -d "$outputDir" ]; then
-  error_and_exit "missing output directory: $outputDir"
-fi
-if [ ! -f "$versionFile" ]; then
-  error_and_exit "missing version file: $versionFile"
-fi
-if [ -z "$artifactId" ]; then
-  error_and_exit "missing artifactId!"
-fi
-if [ -z "$packaging" ]; then
-  error_and_exit "missing packaging!"
-fi
-
-version=`cat $versionFile`
-artifactName="${artifactId}-${version}.${packaging}"
-#artifactName="${artifactId}.${packaging}"
-
-# Removing version info in artifact name for simplicity. Discuss importance of that when deploying real apps
-
-cd $inputDir
-./mvnw clean package -DversionNumber=$version
-
-# Copy jar file to concourse output folder
-cd ..
-mkdir $outputDir/target
-cp $inputDir/target/$artifactName $outputDir/target/$artifactName
+cp pcfdemo/target/$artifact build-output/$artifact

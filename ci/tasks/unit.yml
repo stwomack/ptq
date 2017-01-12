@@ -13,10 +13,6 @@ params:
 
 inputs:
   - name: pcfdemo
-  - name: version
-
-outputs:
-  - name: build-output
 
 run:
-  path: pcfdemo/ci/tasks/build.sh
+  path: pcfdemo/ci/tasks/unit.sh
