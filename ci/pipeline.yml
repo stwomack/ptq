@@ -66,6 +66,8 @@ jobs:
           trigger: true
         - get: ptq-repo
         - get: version
+      - task: update-manifest
+        file: ptq-repo/ci/tasks/update-manifest.yml
       - put: cf-dev
         current_app_name: ptq
         params:
@@ -89,8 +91,8 @@ jobs:
         - get: app-release
           passed: [test-app]
           trigger: true
-      - task: stage-manifest
-        file: ptq-repo/ci/tasks/stage-manifest.yml
+      - task: update-manifest
+        file: ptq-repo/ci/tasks/update-manifest.yml
       - put: cf-stage
         current_app_name: ptq
         params:

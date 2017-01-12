@@ -1,0 +1,25 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: openjdk
+    tag: '8-jdk-alpine'
+
+inputs:
+  - name: ptq-repo
+  - name: version
+
+outputs:
+  - name: manifest-out
+
+run:
+  path: ptq-repo/ci/tasks/build.sh
+  args: [
+    --input-dir, ptq-repo,
+    --output-dir, manifest-out,
+    --version-file, version/number,
+    --artifactId, ptq,
+    --packaging, jar
+  ]
