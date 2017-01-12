@@ -9,6 +9,6 @@ pushd ptq
 popd
 
 # Copy war file to build output folder
-artifact="ptq-$version.war"
+artifact="ptq-$version.jar"
 
 cp ptq/target/$artifact build-output/$artifact
