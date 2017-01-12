@@ -37,7 +37,7 @@ jobs:
     params:
       <<: *maven-params
   - put: candidate-release
-    params: { file: build-output/ptq-*.war }
+    params: { file: build-output/ptq-*.jar }
   - put: version
     params: { file: version/number }
 
@@ -75,7 +75,7 @@ jobs:
   - task: prepare-final
     file: ptq/ci/tasks/prepare-final.yml
   - put: final-release
-    params: { file: prepare-final-output/ptq-*.war }
+    params: { file: prepare-final-output/ptq-*.jar }
   - put: version
     params: { file: version/number }
 
