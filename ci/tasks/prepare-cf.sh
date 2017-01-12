@@ -36,11 +36,11 @@ if [ -z "$HAS_SERVICE" ]; then
 fi
 
 # copy the artifact to the task output folder
-cp candidate-release/pcf-demo-*.war prepare-cf-output/.
+cp candidate-release/ptq-*.war prepare-cf-output/.
 
 pushd prepare-cf-output
 
-ARTIFACT_PATH=$(ls pcf-demo-*.war)
+ARTIFACT_PATH=$(ls ptq-*.war)
 
 cat <<EOF >manifest.yml
 ---

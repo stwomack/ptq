@@ -1,12 +1,7 @@
 ---
-instances: 1
-memory: 4GB
 applications:
-  - name: mastercard-ess-query
-    host: ptq
-    buildpack: java_buildpack_offline
-    path: target/ptq-0.0.1.jar
-    hosts:
-      - ptq
-    services:
-      - ess-postgres
+- name: ptq
+  memory: 512M
+  instances: 1
+  host: ptq
+  path: ./target/ptq.jar

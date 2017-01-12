@@ -1,19 +1,17 @@
-github-uri: https://github.com/.../PCF-demo.git  # Change this to your fork
-github-branch: master
-s3-access-key-id: SAMPLEDF99FSWEBF9DW9  # AWS or S3 compatible access key id
-s3-secret-access-key: sampleaxfdpiA98FG8u7ahd08Sdgf8AFG8gh8S0F  # AWS or S3 compatible secret access key
+github-uri: https://github.com/stwomack/ptq.git  # Change this to your fork
+github-branch: start-over
+s3-access-key-id: AKIAIGESGF77KJAKV7BQ  # AWS or S3 compatible access key id
+s3-secret-access-key: CboLUgiWVyfALvm/j1HV2oXRvJEItI20d1H45Q3s  # AWS or S3 compatible secret access key
 s3-endpoint: s3.amazonaws.com
-s3-bucket-version: pcfdemo-releases  # Create and change this to your own S3 bucket
-s3-bucket-releases: pcfdemo-releases  # Create and change this to your own S3 bucket
-s3-bucket-release-candidates: pcfdemo-release-candidates  # Create and change this to your own S3 bucket
+s3-bucket-version: ptq-releases  # Create and change this to your own S3 bucket
+s3-bucket-releases: ptq-releases  # Create and change this to your own S3 bucket
+s3-bucket-release-candidates: ptq-release-candidates  # Create and change this to your own S3 bucket
 maven-opts: # -Xms256m -Xmx512m
 maven-config: # -s path/to/settings.xml
-cf-api: https://api.local.micropcf.io  # Change the following to match your Cloud Foundry environment
+cf-api: https://api.system.52.176.40.186.cf.pcfazure.com  # Change the following to match your Cloud Foundry environment
 cf-skip-ssl: true
-cf-username: admin
-cf-password: admin
-cf-org: micropcf-org
-cf-space: micropcf-space
-cf-manifest-host: pcfdemo-ci
-cf-mq-service-name: pcfdemo-mq
-cf-mq-service-params: p-rabbitmq standard pcfdemo-mq
+cf-username: swomack@pivotal.io
+cf-password: pivotal123!
+cf-org: it-org
+cf-space: dev
+cf-manifest-host: ptq-ci

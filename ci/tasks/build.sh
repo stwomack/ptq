@@ -4,11 +4,11 @@ set -e
 
 version=$(cat version/number)
 
-pushd pcfdemo
+pushd ptq
   ./mvnw clean package -Pci -DversionNumber=$version
 popd
 
 # Copy war file to build output folder
-artifact="pcf-demo-$version.war"
+artifact="ptq-$version.war"
 
-cp pcfdemo/target/$artifact build-output/$artifact
+cp ptq/target/$artifact build-output/$artifact

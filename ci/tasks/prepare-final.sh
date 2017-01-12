@@ -5,4 +5,4 @@ set -e
 version=$(cat version/number)
 
 # rename the artifact to the final version
-cp candidate-release/pcf-demo-*.war prepare-final-output/pcf-demo-$version.war
+cp candidate-release/ptq-*.war prepare-final-output/ptq-$version.war

@@ -2,6 +2,6 @@
 
 set -e
 
-pushd pcfdemo
+pushd ptq
   ./mvnw clean verify
 popd

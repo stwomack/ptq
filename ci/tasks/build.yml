@@ -12,11 +12,11 @@ params:
   MAVEN_CONFIG:
 
 inputs:
-  - name: pcfdemo
+  - name: ptq
   - name: version
 
 outputs:
   - name: build-output
 
 run:
-  path: pcfdemo/ci/tasks/build.sh
+  path: ptq/ci/tasks/build.sh

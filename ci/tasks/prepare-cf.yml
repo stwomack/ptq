@@ -8,7 +8,7 @@ image_resource:
     tag: 'latest'
 
 inputs:
-- name: pcfdemo
+- name: ptq
 - name: candidate-release
 - name: version
 
@@ -28,4 +28,4 @@ params:
   CF_MQ_SERVICE_PARAMS:
 
 run:
-  path: pcfdemo/ci/tasks/prepare-cf.sh
+  path: ptq/ci/tasks/prepare-cf.sh
