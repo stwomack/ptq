@@ -17,6 +17,7 @@ inputs:
 
 outputs:
   - name: prepare-manifest
+
 run:
   path: ptq-repo/ci/tasks/prepare-manifest.sh
   args: [

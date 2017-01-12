@@ -1,5 +1,6 @@
 #!/bin/ash
 
+echo "Start prepare-manifest.sh"
 # required
 inputDir=  outputDir=  inputManifest=  versionFile=  artifactId=  packaging=
 
