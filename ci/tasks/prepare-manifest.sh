@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ash
 
 # required
 inputDir=  outputDir=  inputManifest=  versionFile=  artifactId=  packaging=
