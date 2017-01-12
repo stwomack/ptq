@@ -60,6 +60,6 @@ version=`cat $versionFile`
 artifactName="${artifactId}-${version}.${packaging}"
 
 # Copy jar file to concourse output folder
-echo "Hi. this is happening.
+echo "Hi. this is happening."
 sed -i '' "s/changeme/ptq-${version}.jar/g" manifest.yml
 cp -fr $inputDir/. $outputDir
