@@ -7,19 +7,23 @@ image_resource:
     repository: openjdk
     tag: '8-jdk-alpine'
 
+params:
+  CF_MANIFEST_HOST: ptq
+
 inputs:
   - name: ptq-repo
+  - name: app-release
   - name: version
 
 outputs:
-  - name: manifest-out
-
+  - name: prepare-manifest
 run:
-  path: ptq-repo/ci/tasks/update-manifest.sh
+  path: ptq-repo/ci/tasks/prepare-manifest.sh
   args: [
-    --input-dir, ptq-repo,
-    --output-dir, manifest-out,
+    --input-dir, app-release,
+    --output-dir, prepare-manifest,
     --version-file, version/number,
+    --input-manifest, attendees-repo/manifest.yml,
     --artifactId, ptq,
     --packaging, jar
   ]
