@@ -15,7 +15,7 @@ outputs:
   - name: manifest-out
 
 run:
-  path: ptq-repo/ci/tasks/build.sh
+  path: ptq-repo/ci/tasks/update-manifest.sh
   args: [
     --input-dir, ptq-repo,
     --output-dir, manifest-out,
