@@ -23,7 +23,7 @@ run:
     --input-dir, app-release,
     --output-dir, prepare-manifest,
     --version-file, version/number,
-    --input-manifest, attendees-repo/manifest.yml,
+    --input-manifest, ptq-repo/manifest.yml,
     --artifactId, ptq,
     --packaging, jar
   ]
