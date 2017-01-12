@@ -5,6 +5,6 @@ applications:
   - name: mastercard-ess-query
     host: ptq
     buildpack: java_buildpack_offline
-    path: target/ptq-1.2.3
+    path: changeme
     services:
       - ess-postgres

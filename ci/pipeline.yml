@@ -71,7 +71,7 @@ jobs:
       - put: cf-dev
         current_app_name: ptq
         params:
-          manifest: ptq-repo/manifest.yml
+          manifest: manifest-out/manifest.yml
 
   - name: test-app
     plan:
@@ -96,4 +96,4 @@ jobs:
       - put: cf-stage
         current_app_name: ptq
         params:
-          manifest: ptq-repo/manifest.yml
+          manifest: manifest-out/manifest.yml
