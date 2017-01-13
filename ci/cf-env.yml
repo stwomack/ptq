@@ -1,6 +1,6 @@
 ---
 github-uri: https://github.com/stwomack/ptq.git  # Change this to your fork
-github-branch: start-over
+github-branch: master
 s3-access-key-id: fff  # AWS or S3 compatible access key id
 s3-secret-access-key: 333  # AWS or S3 compatible secret access key
 s3-endpoint: s3.amazonaws.com
