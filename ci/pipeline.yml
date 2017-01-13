@@ -84,14 +84,12 @@ jobs:
   serial_groups: [ version ]
   plan:
   - put: version
-    passed: [ ship-it ]
     params: { bump: major, pre: rc }
 
 - name: minor
   serial_groups: [ version ]
   plan:
   - put: version
-    passed: [ major ]
     params: { bump: minor, pre: rc }
 
 - name: patch
