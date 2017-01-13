@@ -10,8 +10,8 @@ cf-params: &cf-dev-params
   CF_PASSWORD: {{cf-dev-password}}
   CF_ORG: {{cf-dev-org}}
   CF_SPACE: {{cf-dev-space}}
-  CF_APP_NAME: {{cf-dev-app-name}}
-  CF_APP_HOST: {{cf-dev-app-host}}
+  CF_APP_NAME: {{cf-app-name}}
+  CF_APP_HOST: {{cf-app-host}}
 
 jobs:
 - name: unit-test
