@@ -116,7 +116,7 @@ jobs:
       <<: *cf-params
       CF_APP_HOST: {{cf-app-host-prod1}}
       CF_USERNAME: {{cf-prod1-username}}
-      CF_PASSWORD: {{cf-pro1-password}}
+      CF_PASSWORD: {{cf-prod1-password}}
       CF_SPACE: {{cf-prod1-space}}
   - put: cf-prod1
     params:
