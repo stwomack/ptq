@@ -9,6 +9,22 @@ cf-params: &cf-params
   CF_API_URL: {{cf-dev-api-url}}
   CF_APP_NAME: {{cf-app-name}}
 
+groups:
+  - name: develop
+    jobs:
+    - unit-test
+    - build-artifact
+    - integration-test
+  - name: versioning
+    jobs:
+    - major
+    - minor
+  - name: deploy
+    jobs:
+      - ship-it
+      - patch
+      - deploy-prod
+
 jobs:
 - name: unit-test
   public: true
@@ -100,17 +116,16 @@ jobs:
   - put: version
     params: { bump: patch, pre: rc }
 
-- name: deploy-prod1
+- name: deploy-prod
   serial: true
   plan:
   - get: final-release
-    trigger: true
     passed: [ ship-it ]
   - get: ptq
     passed: [ ship-it ]
   - get: version
     passed: [ ship-it ]
-  - task: prepare-cf
+  - task: prepare-cf-prod1
     file: ptq/ci/tasks/prepare-cf.yml
     params:
       <<: *cf-params
@@ -119,6 +134,18 @@ jobs:
       CF_PASSWORD: {{cf-prod1-password}}
       CF_SPACE: {{cf-prod1-space}}
   - put: cf-prod1
+    params:
+      current_app_name: {{cf-app-name}}
+      manifest: prepare-cf-output/manifest.yml
+  - task: prepare-cf-prod2
+    file: ptq/ci/tasks/prepare-cf.yml
+    params:
+      <<: *cf-params
+      CF_APP_HOST: {{cf-app-host-prod2}}
+      CF_USERNAME: {{cf-prod2-username}}
+      CF_PASSWORD: {{cf-prod2-password}}
+      CF_SPACE: {{cf-prod2-space}}
+  - put: cf-prod2
     params:
       current_app_name: {{cf-app-name}}
       manifest: prepare-cf-output/manifest.yml
@@ -178,12 +205,12 @@ resources:
     space: {{cf-prod1-space}}
     skip_cert_check: true
 
-#- name: cf-prod2
-#  type: cf
-#  source:
-#    api: {{cf-prod2-api-url}}
-#    username: {{cf-prod2-username}}
-#    password: {{cf-prod2-password}}
-#    organization: {{cf-org}}
-#    space: {{cf-prod2-space}}
-#    skip_cert_check: true
+- name: cf-prod2
+  type: cf
+  source:
+    api: {{cf-prod2-api-url}}
+    username: {{cf-prod2-username}}
+    password: {{cf-prod2-password}}
+    organization: {{cf-org}}
+    space: {{cf-prod2-space}}
+    skip_cert_check: true
