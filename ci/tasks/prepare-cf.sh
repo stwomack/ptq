@@ -36,7 +36,7 @@ cf target -s $CF_SPACE
 #fi
 
 # copy the artifact to the task output folder
-cp candidate-release/ptq-*.jar prepare-cf-output/.
+cp artifact/ptq-*.jar prepare-cf-output/.
 
 pushd prepare-cf-output
 

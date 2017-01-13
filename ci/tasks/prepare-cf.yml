@@ -9,7 +9,7 @@ image_resource:
 
 inputs:
 - name: ptq
-- name: candidate-release
+- name: artifact
 - name: version
 
 outputs:

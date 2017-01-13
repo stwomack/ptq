@@ -15,14 +15,12 @@ groups:
     - unit-test
     - build-artifact
     - integration-test
-  - name: versioning
-    jobs:
-    - major
-    - minor
   - name: deploy
     jobs:
       - ship-it
       - patch
+      - major
+      - minor
       - deploy-prod
 
 jobs:
@@ -56,7 +54,8 @@ jobs:
 - name: integration-test
   serial: true
   plan:
-  - get: candidate-release
+  - get: artifact
+    resource: candidate-release
     trigger: true
     passed: [ build-artifact ]
   - get: ptq
@@ -88,6 +87,7 @@ jobs:
     passed: [ integration-test ]
   - get: version
     params: { bump: final }
+    passed: [ integration-test ]
   - task: prepare-final
     file: ptq/ci/tasks/prepare-final.yml
   - put: final-release
@@ -119,7 +119,8 @@ jobs:
 - name: deploy-prod
   serial: true
   plan:
-  - get: final-release
+  - get: artifact
+    resource: final-release
     passed: [ ship-it ]
   - get: ptq
     passed: [ ship-it ]
