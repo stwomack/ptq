@@ -22,7 +22,7 @@ class ExampleInfoContributor implements InfoContributor {
 	@Override
 	public void contribute(Info.Builder builder) {
 		builder.withDetail("Property",
-				Collections.singletonMap("key", "value"));
+				Collections.singletonMap("JAVA_OPTS", System.getenv().get("JAVA_OPTS")));
 	}
 
 }
