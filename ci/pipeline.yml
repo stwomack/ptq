@@ -142,7 +142,7 @@ resources:
     endpoint: {{s3-endpoint}}
 
 - name: cf-dev
-  type: cf-dev
+  type: cf
   source:
     api: {{cf-dev-api-url}}
     username: {{cf-dev-username}}
@@ -152,7 +152,7 @@ resources:
     skip_cert_check: true
 
 - name: cf-prod1
-  type: cf-prod1
+  type: cf
   source:
     api: {{cf-prod1-api-url}}
     username: {{cf-prod1-username}}
@@ -162,7 +162,7 @@ resources:
     skip_cert_check: true
 
 - name: cf-prod2
-  type: cf-prod2
+  type: cf
   source:
     api: {{cf-prod2-api-url}}
     username: {{cf-prod2-username}}
