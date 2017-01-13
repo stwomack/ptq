@@ -9,12 +9,20 @@ s3-bucket-releases: ptq-releases  # Create and change this to your own S3 bucket
 s3-bucket-release-candidates: ptq-release-candidates  # Create and change this to your own S3 bucket
 maven-opts: # -Xms256m -Xmx512m
 maven-config: # -s path/to/settings.xml
-cf-dev-api-url: api  # Change the following to match your Cloud Foundry environment
-cf-dev-username: swomack@pivotal.io
-cf-dev-password: 233
-cf-dev-space: dev
-cf-org: it-org
+cf-org: it-org # Change the following to match your Cloud Foundry environment
 cf-manifest-host: ptq-ci
 cf-app-name: ptq
 cf-app-host: ptq
 cf-skip-ssl: true
+cf-dev-api-url: https://api.system.52.176.40.186.cf.pcfazure.com
+cf-dev-username: s
+cf-dev-password: 233
+cf-dev-space: dev
+cf-prod1-api-url: https://api.system.40.84.155.239.cf.pcfazure.com
+cf-prod1-username: s
+cf-prod1-password: 233
+cf-prod1-space: dev
+cf-prod2-api-url: api
+cf-prod2-username: https://api.pcf-apps.net
+cf-prod2-password: 233
+cf-prod2-space: dev
