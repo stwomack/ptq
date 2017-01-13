@@ -64,6 +64,25 @@ jobs:
     params:
       <<: *maven-params
 
+- name: deploy-prod
+  serial: true
+  plan:
+  - get: candidate-release
+    trigger: true
+    passed: [ build-artifact ]
+  - get: ptq
+    passed: [ build-artifact ]
+  - get: version
+    passed: [ build-artifact ]
+  - task: prepare-cf
+    file: ptq/ci/tasks/prepare-cf.yml
+    params:
+      <<: *cf-dev-params
+  - put: cf-prod
+    params:
+      current_app_name: ptq
+      manifest: prepare-cf-output/manifest.yml
+
 - name: ship-it
   serial_groups: [ version ]
   plan:
@@ -79,6 +98,10 @@ jobs:
     params: { file: prepare-final-output/ptq-*.jar }
   - put: version
     params: { file: version/number }
+  - put: cf-prod
+    params:
+      current_app_name: ptq
+      manifest: prepare-final-output/manifest.yml
 
 - name: major
   serial_groups: [ version ]
