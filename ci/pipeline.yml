@@ -3,15 +3,15 @@ maven-params: &maven-params
   MAVEN_OPTS: {{maven-opts}}
   MAVEN_CONFIG: {{maven-config}}
 
-cf-params: &cf-params
-  CF_API_URL: {{cf-api}}
-  CF_SKIP_SSL: {{cf-skip-ssl}}
-  CF_USERNAME: {{cf-username}}
-  CF_PASSWORD: {{cf-password}}
-  CF_ORG: {{cf-org}}
-  CF_SPACE: {{cf-space}}
-  CF_APP_NAME: {{cf-app-name}}
-  CF_APP_HOST: {{cf-app-host}}
+cf-params: &cf-dev-params
+  CF_API_URL: {{cf-dev-api}}
+  CF_SKIP_SSL: {{cf-dev-skip-ssl}}
+  CF_USERNAME: {{cf-dev-username}}
+  CF_PASSWORD: {{cf-dev-password}}
+  CF_ORG: {{cf-dev-org}}
+  CF_SPACE: {{cf-dev-space}}
+  CF_APP_NAME: {{cf-dev-app-name}}
+  CF_APP_HOST: {{cf-dev-app-host}}
 
 jobs:
 - name: unit-test
