@@ -3,5 +3,5 @@
 set -e
 
 pushd ptq
-  ./mvnw clean test
+#  ./mvnw clean test
 popd

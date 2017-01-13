@@ -4,14 +4,10 @@ maven-params: &maven-params
   MAVEN_CONFIG: {{maven-config}}
 
 cf-params: &cf-params
-  CF_API_URL: {{cf-dev-api-url}}
   CF_SKIP_SSL: {{cf-skip-ssl}}
-  CF_USERNAME: {{cf-dev-username}}
-  CF_PASSWORD: {{cf-dev-password}}
   CF_ORG: {{cf-org}}
-  CF_SPACE: {{cf-dev-space}}
+  CF_API_URL: {{cf-dev-api-url}}
   CF_APP_NAME: {{cf-app-name}}
-  CF_APP_HOST: {{cf-app-host}}
 
 jobs:
 - name: unit-test
@@ -55,13 +51,11 @@ jobs:
     file: ptq/ci/tasks/prepare-cf.yml
     params:
       <<: *cf-params
+      CF_APP_HOST: {{cf-app-host-dev}}
+      CF_USERNAME: {{cf-dev-username}}
+      CF_PASSWORD: {{cf-dev-password}}
+      CF_SPACE: {{cf-dev-space}}
   - put: cf-dev
-    params:
-      manifest: prepare-cf-output/manifest.yml
-  - put: cf-prod1
-    params:
-      manifest: prepare-cf-output/manifest.yml
-  - put: cf-prod2
     params:
       manifest: prepare-cf-output/manifest.yml
   - task: integration
@@ -105,6 +99,28 @@ jobs:
     trigger: true
   - put: version
     params: { bump: patch, pre: rc }
+
+- name: deploy-prod1
+  serial: true
+  plan:
+  - get: final-release
+    trigger: true
+    passed: [ ship-it ]
+  - get: ptq
+    passed: [ ship-it ]
+  - get: version
+    passed: [ ship-it ]
+  - task: prepare-cf
+    file: ptq/ci/tasks/prepare-cf.yml
+    params:
+      <<: *cf-params
+      CF_APP_HOST: {{cf-app-host-prod1}}
+      CF_USERNAME: {{cf-prod1-username}}
+      CF_PASSWORD: {{cf-pro1-password}}
+      CF_SPACE: {{cf-prod1-space}}
+  - put: cf-prod1
+    params:
+      manifest: prepare-cf-output/manifest.yml
 
 resources:
 - name: ptq
