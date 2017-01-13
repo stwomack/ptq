@@ -55,8 +55,9 @@ jobs:
     file: ptq/ci/tasks/prepare-cf.yml
     params:
       <<: *cf-params
-  - put: cf
+  - put: cf-dev
     params:
+      current_app_name: ptq
       manifest: prepare-cf-output/manifest.yml
   - task: integration
     file: ptq/ci/tasks/integration.yml
@@ -83,18 +84,21 @@ jobs:
   serial_groups: [ version ]
   plan:
   - put: version
+    passed: [ ship-it ]
     params: { bump: major, pre: rc }
 
 - name: minor
   serial_groups: [ version ]
   plan:
   - put: version
+    passed: [ major ]
     params: { bump: minor, pre: rc }
 
 - name: patch
   serial_groups: [ version ]
   plan:
   - get: version
+    passed: [ minor ]
     passed: [ ship-it ]
     trigger: true
   - put: version
@@ -135,12 +139,12 @@ resources:
     secret_access_key: {{s3-secret-access-key}}
     endpoint: {{s3-endpoint}}
 
-- name: cf
+- name: cf-dev
   type: cf
   source:
-    api: {{cf-api}}
-    username: {{cf-username}}
-    password: {{cf-password}}
-    organization: {{cf-org}}
-    space: {{cf-space}}
+    api: {{cf-dev-api}}
+    username: {{cf-dev-username}}
+    password: {{cf-dev-password}}
+    organization: {{cf-dev-org}}
+    space: {{cf-dev-space}}
     skip_cert_check: true
