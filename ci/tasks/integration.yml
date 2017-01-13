@@ -7,16 +7,8 @@ image_resource:
     repository: java
     tag: '8'
 
-params:
-  MAVEN_OPTS:
-  MAVEN_CONFIG:
-
 inputs:
   - name: ptq
-  - name: version
-
-outputs:
-  - name: build-output
 
 run:
-  path: ptq/ci/tasks/build.sh
+  path: ptq/ci/tasks/integration.sh

@@ -13,10 +13,6 @@ params:
 
 inputs:
   - name: ptq
-  - name: version
-
-outputs:
-  - name: build-output
 
 run:
-  path: ptq/ci/tasks/build.sh
+  path: ptq/ci/tasks/unit.sh
