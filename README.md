@@ -1,7 +1,7 @@
-# mastercard-ess-processed-transactions-query-
+# mastercard-ess-processed-transactions-query
 Holds Mastercard POT query for GPDB simulation
 
-# continuous Delivery
+# Continuous Delivery
 
 ## Installing via Concourse
 Everything needed to install this service via concourse (pipeline service) is avaialble under the ci folder.
@@ -30,3 +30,6 @@ cd mastercard-ess-processed-transactions-query
 ### Step 3 Modify the cd-env.yaml file with needed configuration information
 the cf-env.yaml file provided within this repo is an example of the information needed to install the pipeline.
 you must first rename the file to be .cf-env.yaml as this is what concoruse CLI will look for when installing.
+
+### Step 4 Install Concourse fly CLI, and run ci/fly.sh
+Look at the script & assert that your concourse endpoint, and user auth (-u|-p) are properly configured for your concourse environment.
