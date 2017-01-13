@@ -1,20 +1,20 @@
 ---
 github-uri: https://github.com/stwomack/ptq.git  # Change this to your fork
 github-branch: start-over
-s3-access-key-id: blah  # AWS or S3 compatible access key id
-s3-secret-access-key: blahblah # AWS or S3 compatible secret access key
+s3-access-key-id: fff  # AWS or S3 compatible access key id
+s3-secret-access-key: 333  # AWS or S3 compatible secret access key
 s3-endpoint: s3.amazonaws.com
 s3-bucket-version: ptq-versions  # Create and change this to your own S3 bucket
 s3-bucket-releases: ptq-releases  # Create and change this to your own S3 bucket
 s3-bucket-release-candidates: ptq-release-candidates  # Create and change this to your own S3 bucket
 maven-opts: # -Xms256m -Xmx512m
 maven-config: # -s path/to/settings.xml
-cf-dev-api: https://api.system.12345.cf.pcfazure.com  # Change the following to match your Cloud Foundry environment
-cf-dev-skip-ssl: true
+cf-dev-api-url: api  # Change the following to match your Cloud Foundry environment
 cf-dev-username: swomack@pivotal.io
-cf-dev-password: pivotal123!
-cf-dev-org: it-org
+cf-dev-password: 233
 cf-dev-space: dev
+cf-org: it-org
 cf-manifest-host: ptq-ci
 cf-app-name: ptq
 cf-app-host: ptq
+cf-skip-ssl: true
