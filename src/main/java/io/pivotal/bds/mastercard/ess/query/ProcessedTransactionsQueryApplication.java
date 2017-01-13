@@ -25,4 +25,5 @@ class ExampleInfoContributor implements InfoContributor {
 				Collections.singletonMap("JAVA_OPTS", System.getenv().get("JAVA_OPTS")));
 	}
 
+
 }
