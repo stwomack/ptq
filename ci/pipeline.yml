@@ -120,6 +120,7 @@ jobs:
       CF_SPACE: {{cf-prod1-space}}
   - put: cf-prod1
     params:
+      current_app_name: {{cf-app-app-prod1}}
       manifest: prepare-cf-output/manifest.yml
 
 resources:
@@ -177,12 +178,12 @@ resources:
     space: {{cf-prod1-space}}
     skip_cert_check: true
 
-- name: cf-prod2
-  type: cf
-  source:
-    api: {{cf-prod2-api-url}}
-    username: {{cf-prod2-username}}
-    password: {{cf-prod2-password}}
-    organization: {{cf-org}}
-    space: {{cf-prod2-space}}
-    skip_cert_check: true
+#- name: cf-prod2
+#  type: cf
+#  source:
+#    api: {{cf-prod2-api-url}}
+#    username: {{cf-prod2-username}}
+#    password: {{cf-prod2-password}}
+#    organization: {{cf-org}}
+#    space: {{cf-prod2-space}}
+#    skip_cert_check: true
