@@ -3,12 +3,12 @@ maven-params: &maven-params
   MAVEN_OPTS: {{maven-opts}}
   MAVEN_CONFIG: {{maven-config}}
 
-cf-params: &cf-dev-params
-  CF_API_URL: {{cf-dev-api}}
-  CF_SKIP_SSL: {{cf-dev-skip-ssl}}
+cf-params: &cf-params
+  CF_API_URL: {{cf-dev-api-url}}
+  CF_SKIP_SSL: {{cf-skip-ssl}}
   CF_USERNAME: {{cf-dev-username}}
   CF_PASSWORD: {{cf-dev-password}}
-  CF_ORG: {{cf-dev-org}}
+  CF_ORG: {{cf-org}}
   CF_SPACE: {{cf-dev-space}}
   CF_APP_NAME: {{cf-app-name}}
   CF_APP_HOST: {{cf-app-host}}
@@ -54,34 +54,14 @@ jobs:
   - task: prepare-cf
     file: ptq/ci/tasks/prepare-cf.yml
     params:
-      <<: *cf-dev-params
-  - put: cf-dev
+      <<: *cf-params
+  - put: cf
     params:
-      current_app_name: ptq
       manifest: prepare-cf-output/manifest.yml
   - task: integration
     file: ptq/ci/tasks/integration.yml
     params:
       <<: *maven-params
-
-- name: deploy-prod
-  serial: true
-  plan:
-  - get: candidate-release
-    trigger: true
-    passed: [ build-artifact ]
-  - get: ptq
-    passed: [ build-artifact ]
-  - get: version
-    passed: [ build-artifact ]
-  - task: prepare-cf
-    file: ptq/ci/tasks/prepare-cf.yml
-    params:
-      <<: *cf-dev-params
-  - put: cf-prod
-    params:
-      current_app_name: ptq
-      manifest: prepare-cf-output/manifest.yml
 
 - name: ship-it
   serial_groups: [ version ]
@@ -98,10 +78,6 @@ jobs:
     params: { file: prepare-final-output/ptq-*.jar }
   - put: version
     params: { file: version/number }
-  - put: cf-prod
-    params:
-      current_app_name: ptq
-      manifest: prepare-final-output/manifest.yml
 
 - name: major
   serial_groups: [ version ]
@@ -119,7 +95,6 @@ jobs:
   serial_groups: [ version ]
   plan:
   - get: version
-    passed: [ minor ]
     passed: [ ship-it ]
     trigger: true
   - put: version
@@ -160,12 +135,12 @@ resources:
     secret_access_key: {{s3-secret-access-key}}
     endpoint: {{s3-endpoint}}
 
-- name: cf-dev
+- name: cf
   type: cf
   source:
-    api: {{cf-dev-api}}
+    api: {{cf-dev-api-url}}
     username: {{cf-dev-username}}
     password: {{cf-dev-password}}
-    organization: {{cf-dev-org}}
+    organization: {{cf-org}}
     space: {{cf-dev-space}}
     skip_cert_check: true
