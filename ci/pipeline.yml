@@ -120,7 +120,7 @@ jobs:
       CF_SPACE: {{cf-prod1-space}}
   - put: cf-prod1
     params:
-      current_app_name: {{cf-app-app-prod1}}
+      current_app_name: {{cf-app-name}}
       manifest: prepare-cf-output/manifest.yml
 
 resources:
