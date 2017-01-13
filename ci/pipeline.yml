@@ -55,7 +55,13 @@ jobs:
     file: ptq/ci/tasks/prepare-cf.yml
     params:
       <<: *cf-params
-  - put: cf
+  - put: cf-dev
+    params:
+      manifest: prepare-cf-output/manifest.yml
+  - put: cf-prod1
+    params:
+      manifest: prepare-cf-output/manifest.yml
+  - put: cf-prod2
     params:
       manifest: prepare-cf-output/manifest.yml
   - task: integration
@@ -135,12 +141,32 @@ resources:
     secret_access_key: {{s3-secret-access-key}}
     endpoint: {{s3-endpoint}}
 
-- name: cf
-  type: cf
+- name: cf-dev
+  type: cf-dev
   source:
     api: {{cf-dev-api-url}}
     username: {{cf-dev-username}}
     password: {{cf-dev-password}}
     organization: {{cf-org}}
     space: {{cf-dev-space}}
+    skip_cert_check: true
+
+- name: cf-prod1
+  type: cf-prod1
+  source:
+    api: {{cf-prod1-api-url}}
+    username: {{cf-prod1-username}}
+    password: {{cf-prod1-password}}
+    organization: {{cf-org}}
+    space: {{cf-prod1-space}}
+    skip_cert_check: true
+
+- name: cf-prod2
+  type: cf-prod2
+  source:
+    api: {{cf-prod2-api-url}}
+    username: {{cf-prod2-username}}
+    password: {{cf-prod2-password}}
+    organization: {{cf-org}}
+    space: {{cf-prod2-space}}
     skip_cert_check: true
