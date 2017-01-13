@@ -54,7 +54,7 @@ jobs:
   - task: prepare-cf
     file: ptq/ci/tasks/prepare-cf.yml
     params:
-      <<: *cf-params
+      <<: *cf-dev-params
   - put: cf-dev
     params:
       current_app_name: ptq
