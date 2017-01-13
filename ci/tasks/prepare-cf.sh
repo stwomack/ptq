@@ -51,7 +51,8 @@ applications:
   memory: 512M
   instances: 1
   timeout: 180
-#  services: [ $CF_MQ_SERVICE_NAME ]
+  services:
+    - ess-postgres
   env:
     JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
 EOF

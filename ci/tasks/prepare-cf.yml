@@ -24,8 +24,6 @@ params:
   CF_SPACE:
   CF_APP_NAME:
   CF_APP_HOST:
-  CF_MQ_SERVICE_NAME:
-  CF_MQ_SERVICE_PARAMS:
 
 run:
   path: ptq/ci/tasks/prepare-cf.sh
