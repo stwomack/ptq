@@ -72,6 +72,7 @@ jobs:
       CF_SPACE: {{cf-dev-space}}
   - put: cf-dev
     params:
+      current_app_name: {{cf-app-name}}
       manifest: prepare-cf-output/manifest.yml
   - task: integration
     file: ptq/ci/tasks/integration.yml
