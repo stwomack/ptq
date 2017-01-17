@@ -4,7 +4,7 @@ github-branch: master
 s3-access-key-id: blah  # AWS or S3 compatible access key id
 s3-secret-access-key: blah  # AWS or S3 compatible secret access key
 s3-endpoint: s3.amazonaws.com
-s3-bucket-version: ptq-versions  # Create and change this to your own S3 bucket
+s3-bucket-version: ptq-releases  # Create and change this to your own S3 bucket
 s3-bucket-releases: ptq-releases  # Create and change this to your own S3 bucket
 s3-bucket-release-candidates: ptq-release-candidates  # Create and change this to your own S3 bucket
 maven-opts: # -Xms256m -Xmx512m
