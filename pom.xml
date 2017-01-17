@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -24,6 +24,8 @@
 		<java.version>1.8</java.version>
 		<versionNumber>${project.version}</versionNumber>
 		<finalName>${project.artifactId}-${versionNumber}</finalName>
+		<wro4j.version>1.8.0</wro4j.version>
+		<java.version>1.8</java.version>
 	</properties>
 
 	<profiles>
@@ -57,10 +59,10 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-stream-kafka</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>io.pivotal.spring.cloud</groupId>
-			<artifactId>spring-cloud-services-starter-config-client</artifactId>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>io.pivotal.spring.cloud</groupId>-->
+			<!--<artifactId>spring-cloud-services-starter-config-client</artifactId>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
@@ -75,6 +77,12 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>angularjs</artifactId>
+			<version>1.4.9</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -113,13 +121,9 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			<plugin>
 				<groupId>ro.isdc.wro4j</groupId>
 				<artifactId>wro4j-maven-plugin</artifactId>
-				<version>1.8.0</version>
+				<version>${wro4j.version}</version>
 				<executions>
 					<execution>
 						<phase>generate-resources</phase>
@@ -150,7 +154,7 @@
 					<dependency>
 						<groupId>org.webjars</groupId>
 						<artifactId>bootstrap</artifactId>
-						<version>3.3.7</version>
+						<version>3.3.7-1</version>
 					</dependency>
 				</dependencies>
 			</plugin>
