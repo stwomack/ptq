@@ -1,28 +1,30 @@
 ---
 github-uri: https://github.com/stwomack/ptq.git  # Change this to your fork
 github-branch: master
-s3-access-key-id: fff  # AWS or S3 compatible access key id
-s3-secret-access-key: 333  # AWS or S3 compatible secret access key
+s3-access-key-id: blah  # AWS or S3 compatible access key id
+s3-secret-access-key: blah  # AWS or S3 compatible secret access key
 s3-endpoint: s3.amazonaws.com
 s3-bucket-version: ptq-versions  # Create and change this to your own S3 bucket
 s3-bucket-releases: ptq-releases  # Create and change this to your own S3 bucket
 s3-bucket-release-candidates: ptq-release-candidates  # Create and change this to your own S3 bucket
 maven-opts: # -Xms256m -Xmx512m
 maven-config: # -s path/to/settings.xml
-cf-org: it-org # Change the following to match your Cloud Foundry environment
+cf-org: it-org # Change the following to match your Cloud Foundry environments
 cf-manifest-host: ptq-ci
 cf-app-name: ptq
-cf-app-host: ptq
+cf-app-host-dev: ptq
+cf-app-host-prod: ptq
+
 cf-skip-ssl: true
 cf-dev-api-url: https://api.system.52.176.40.186.cf.pcfazure.com
-cf-dev-username: s
-cf-dev-password: 233
+cf-dev-username: blah
+cf-dev-password: blah
 cf-dev-space: dev
 cf-prod1-api-url: https://api.system.40.84.155.239.cf.pcfazure.com
-cf-prod1-username: s
-cf-prod1-password: 233
-cf-prod1-space: dev
-cf-prod2-api-url: api
-cf-prod2-username: https://api.pcf-apps.net
-cf-prod2-password: 233
-cf-prod2-space: dev
+cf-prod1-username: blah
+cf-prod1-password: blah
+cf-prod1-space: prod
+cf-prod2-api-url: https://api.pcf-apps.net
+cf-prod2-username: swomack@pivotal.io
+cf-prod2-password: pivotal1
+cf-prod2-space: prod
