@@ -19,12 +19,15 @@ cf-skip-ssl: true
 cf-dev-api-url: https://api.system.52.176.40.186.cf.pcfazure.com
 cf-dev-username: blah
 cf-dev-password: blah
+cf-dev-org: dev
 cf-dev-space: dev
 cf-prod1-api-url: https://api.system.40.84.155.239.cf.pcfazure.com
 cf-prod1-username: blah
 cf-prod1-password: blah
+cf-prod1-org: prod
 cf-prod1-space: prod
 cf-prod2-api-url: https://api.pcf-apps.net
 cf-prod2-username: swomack@pivotal.io
 cf-prod2-password: pivotal1
+cf-prod2-org: prod
 cf-prod2-space: prod

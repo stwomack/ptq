@@ -195,7 +195,7 @@ resources:
     api: {{cf-dev-api-url}}
     username: {{cf-dev-username}}
     password: {{cf-dev-password}}
-    organization: {{cf-org}}
+    organization: {{cf-dev-org}}
     space: {{cf-dev-space}}
     skip_cert_check: true
 
@@ -205,7 +205,7 @@ resources:
     api: {{cf-prod1-api-url}}
     username: {{cf-prod1-username}}
     password: {{cf-prod1-password}}
-    organization: {{cf-org}}
+    organization: {{cf-prod1-org}}
     space: {{cf-prod1-space}}
     skip_cert_check: true
 
@@ -215,6 +215,6 @@ resources:
     api: {{cf-prod2-api-url}}
     username: {{cf-prod2-username}}
     password: {{cf-prod2-password}}
-    organization: {{cf-org}}
+    organization: {{cf-prod2-org}}
     space: {{cf-prod2-space}}
     skip_cert_check: true
